@@ -1,0 +1,565 @@
+/*  Underpass is Copyright (C) 2021 Markus Noga
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.   */
+
+import "./app.css";
+import { createIcons, AudioLines, Circle, Square, X, Scale, Github } from "lucide";
+
+// AudioWorklet processors run in a separate thread — they must be loaded by URL.
+// Vite builds processors.ts as a separate entry point (see vite.config.ts).
+const processorsUrl = import.meta.env.DEV ? "/src/processors.ts" : "/processors.js";
+
+// Render static Lucide icons in the DOM
+createIcons({
+  icons: { AudioLines, Circle, Square, X, Scale, Github },
+});
+
+let audioContext: AudioContext | null = null;
+
+const enableAudioButton = document.querySelector<HTMLButtonElement>("button#enableAudio")!;
+const mainControlsSection = document.querySelector<HTMLElement>("section#mainControls")!;
+
+enableAudioButton.onclick = function () {
+  navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
+    void stream; // permission grant only — stream is discarded
+    enableAudioButton.style.display = "none";
+    mainControlsSection.classList.remove("hidden");
+    navigator.mediaDevices.ondevicechange!(new Event("devicechange"));
+    navigator.requestMIDIAccess({ sysex: true }).then(midiAccessSuccess).catch(function (err: DOMException) {
+      alert("Cannot select MIDI devices in this browser. Try Chrome. Error " + err.name + ": " + err.message);
+    });
+  }).catch((err: Error) => {
+    console.log("error enabling audio:" + err);
+    alert("Cannot enable audio in this browser:" + err);
+  });
+};
+
+
+// Audio devices
+//
+const audioInputSelect = document.querySelector<HTMLSelectElement>("select#audioInput")!;
+
+function audioInputChanged() {
+  const audioSource = audioInputSelect.value;
+  let audioSourceName = "undefined";
+  if (audioInputSelect.options[audioInputSelect.selectedIndex])
+    audioSourceName = audioInputSelect.options[audioInputSelect.selectedIndex].text;
+  console.log("New audio source: " + audioSourceName);
+  const constraints: MediaStreamConstraints = {
+    audio: {
+      deviceId: audioSource ? { exact: audioSource } : undefined,
+      sampleRate: { exact: 48000 },
+      sampleSize: { exact: 16 },
+    },
+  };
+
+  navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+    recorderInit(stream);
+  }).catch((err: Error) => {
+    alert("Unable to access audio.\n\n" + err);
+    console.log("Unable to access audio: " + err);
+  });
+}
+
+audioInputSelect.onchange = audioInputChanged;
+
+function enumerateDevicesSuccess(deviceInfos: MediaDeviceInfo[]) {
+  const previousValue = audioInputSelect.value;
+  while (audioInputSelect.firstChild) {
+    audioInputSelect.removeChild(audioInputSelect.firstChild);
+  }
+  for (let i = 0; i !== deviceInfos.length; ++i) {
+    const deviceInfo = deviceInfos[i];
+    if (deviceInfo.kind !== "audioinput") continue;
+
+    const option = document.createElement("option");
+    option.value = deviceInfo.deviceId;
+    option.text = deviceInfo.label || `audio input ${audioInputSelect.length + 1}`;
+    audioInputSelect.appendChild(option);
+  }
+  audioInputSelect.value = "";
+  if (previousValue) {
+    for (let i = 0; i < audioInputSelect.options.length; i++) {
+      if (audioInputSelect.options[i].value === previousValue) {
+        audioInputSelect.value = previousValue;
+        break;
+      }
+    }
+  }
+  if (!audioInputSelect.value) {
+    for (let i = 0; i < audioInputSelect.options.length; i++) {
+      if (audioInputSelect.options[i].text.includes("Model:Samples")) {
+        audioInputSelect.value = audioInputSelect.options[i].value;
+        break;
+      }
+    }
+  }
+  if (audioInputSelect.value !== previousValue && audioInputSelect.onchange)
+    audioInputSelect.onchange(new Event("change"));
+}
+
+navigator.mediaDevices.ondevicechange = function () {
+  navigator.mediaDevices.enumerateDevices().then(enumerateDevicesSuccess).catch(function (err: DOMException) {
+    alert("Cannot select audio devices in this browser. Try Chrome. Error " + err.name + ": " + err.message);
+  });
+};
+
+
+// MIDI devices
+// See https://www.midi.org/specifications/midi1-specifications/m1-v4-2-1-midi-1-0-detailed-specification-96-1-4
+//
+
+let midiAccess: MIDIAccess | null = null;
+let midiFromDevice: MIDIInput | null = null;
+let midiToDevice: MIDIOutput | null = null;
+
+const midiFromDeviceSelect = document.querySelector<HTMLSelectElement>("select#midiFromDevice")!;
+const midiToDeviceSelect = document.querySelector<HTMLSelectElement>("select#midiToDevice")!;
+const midiSelectors = [midiFromDeviceSelect, midiToDeviceSelect];
+
+
+function midiFromDeviceChanged() {
+  const sel = midiFromDeviceSelect.value;
+  const oldMidiFromDevice = midiFromDevice;
+  midiFromDevice = midiAccess!.inputs.get(sel) ?? null;
+  if (oldMidiFromDevice && oldMidiFromDevice !== midiFromDevice)
+    oldMidiFromDevice.onmidimessage = null;
+  if (midiFromDevice) {
+    console.log("New MIDI from device: " + midiFromDevice.name);
+    midiFromDevice.onmidimessage = midiInputMessage;
+  } else {
+    console.log("No MIDI from device");
+  }
+}
+
+midiFromDeviceSelect.onclick = midiFromDeviceChanged;
+midiFromDeviceSelect.onchange = midiFromDeviceChanged;
+
+function midiToDeviceChanged() {
+  const sel = midiToDeviceSelect.value;
+  midiToDevice = midiAccess!.outputs.get(sel) ?? null;
+  if (midiToDevice)
+    console.log("New MIDI to device: " + midiToDevice.name);
+  else
+    console.log("No MIDI to device");
+}
+
+midiToDeviceSelect.onclick = midiToDeviceChanged;
+midiToDeviceSelect.onchange = midiToDeviceChanged;
+
+
+function midiAccessSuccess(ma: MIDIAccess) {
+  midiAccess = ma;
+
+  const values = midiSelectors.map(select => select.value);
+  midiSelectors.forEach(select => {
+    while (select.firstChild) {
+      select.removeChild(select.firstChild);
+    }
+  });
+  ma.inputs.forEach(function (input, port) {
+    const option = document.createElement("option");
+    option.value = port;
+    option.text = input.name ?? port;
+    midiFromDeviceSelect.appendChild(option);
+  });
+  ma.outputs.forEach(function (output, port) {
+    const option = document.createElement("option");
+    option.value = port;
+    option.text = output.name ?? port;
+    midiToDeviceSelect.appendChild(option);
+  });
+  midiSelectors.forEach((select, selectorIndex) => {
+    const val = values[selectorIndex];
+    select.value = "";
+    if (val) {
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].value === val) {
+          select.value = val;
+          break;
+        }
+      }
+    }
+    if (!select.value) {
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].text.includes("Model:Samples")) {
+          select.value = select.options[i].value;
+          break;
+        }
+      }
+    }
+    if (select.value !== val && select.onchange)
+      select.onchange(new Event("change"));
+  });
+
+  midiAccess.onstatechange = function () { midiAccessSuccess(midiAccess!); };
+}
+
+let midiSampleDumpPackets: Uint8Array[] = [];
+let midiSampleDumpPacketsTotal = 0;
+let midiSampleDumpPacketsSent = 0;
+let midiSampleDumpPacketsAcknowledged = 0;
+
+function midiInputMessage(event: MIDIMessageEvent) {
+  const d = event.data!;
+  if (d.length !== 6 || d[0] !== 0xf0 || d[1] !== 0x7e || d[2] !== 0x00 || d[5] !== 0xf7) {
+    console.log("Ignoring unknown MIDI message " + midiMessageToString(d));
+    return;
+  }
+  if (d[3] === 0x7f) { // ack
+    midiSampleDumpPacketsAcknowledged++;
+    const progress = midiSampleDumpPacketsAcknowledged / midiSampleDumpPacketsTotal;
+    recorderShowMidiSDProgress(progress);
+
+    if (midiSampleDumpPacketsSent < midiSampleDumpPacketsTotal) {
+      midiToDevice!.send(midiSampleDumpPackets[midiSampleDumpPacketsSent - 1]);
+      midiSampleDumpPacketsSent++;
+    } else if (recCurStatusNode!.textContent !== "Uploaded") {
+      console.log("Data transfer complete");
+      recCurStatusNode!.textContent = "Uploaded";
+      recButton.disabled = false;
+      stopButton.disabled = true;
+      sampleIDInput.value = String(parseInt(sampleIDInput.value) + 1);
+    }
+  } else if (d[3] === 0x7c) { // wait
+    // ignore
+  } else {
+    console.log("Ignoring unknown MIDI message " + midiMessageToString(d));
+  }
+}
+
+function midiSendSampleDump(sampleNumber: number, sampleRate: number, samples: Float32Array) {
+  const header = newMidiSDHeader(0, sampleNumber, 16, sampleRate, samples.length, 0, samples.length - 1, 0x7f);
+  const packets = newMidiSDDataPackets(0, 16, samples);
+
+  recorderShowMidiSDProgress(0);
+  midiSampleDumpPackets = packets;
+  midiSampleDumpPacketsTotal = packets.length + 1;
+  midiSampleDumpPacketsSent = 1;
+  midiSampleDumpPacketsAcknowledged = 0;
+  midiToDevice!.send(header);
+}
+
+function newMidiSDHeader(deviceID: number, sampleNumber: number, sampleBits: number, sampleRate: number, sampleLength: number, loopStart: number, loopEnd: number, loopType: number): Uint8Array {
+  const samplePeriod = 1000000000 / sampleRate;
+  const header = new Uint8Array(21);
+  header[0] = 0xf0;                        // begin system exclusive
+  header[1] = 0x7e;                        // sample dump
+  header[2] = deviceID & 0x7f;             // device ID
+  header[3] = 0x01;                        // header
+  header[4] = sampleNumber & 0x7f;         // sample number lsb
+  header[5] = (sampleNumber >> 7) & 0x7f;  // sample number msb
+  header[6] = sampleBits & 0x7f;           // sample format, length in bits
+  header[7] = samplePeriod & 0x7f;         // sample period, lsb first
+  header[8] = (samplePeriod >> 7) & 0x7f;
+  header[9] = (samplePeriod >> 14) & 0x7f;
+  header[10] = sampleLength & 0x7f;        // sample length, lsb first
+  header[11] = (sampleLength >> 7) & 0x7f;
+  header[12] = (sampleLength >> 14) & 0x7f;
+  header[13] = loopStart & 0x7f;           // loop start, lsb first
+  header[14] = (loopStart >> 7) & 0x7f;
+  header[15] = (loopStart >> 14) & 0x7f;
+  header[16] = loopEnd & 0x7f;             // loop end, lsb first
+  header[17] = (loopEnd >> 7) & 0x7f;
+  header[18] = (loopEnd >> 14) & 0x7f;
+  header[19] = loopType & 0x7f;            // loop type, 0=fwd, 1=back/fwd, 7f=off
+  header[20] = 0xf7;                       // end system exclusive
+  return header;
+}
+
+function newMidiSDDataPackets(deviceID: number, sampleBits: number, samples: Float32Array): Uint8Array[] {
+  const packets: Uint8Array[] = [];
+
+  let saIndex = 0;
+  while (saIndex < samples.length) {
+    const packet = new Uint8Array(127);
+    const packetID = packets.length;
+    let pIndex = 0;
+
+    packet[pIndex++] = 0xf0;            // begin system exclusive
+    packet[pIndex++] = 0x7e;            // sample dump
+    packet[pIndex++] = deviceID & 0x7f; // device ID
+    packet[pIndex++] = 0x02;            // data packet
+    packet[pIndex++] = packetID & 0x7f; // packet ID lsb (msb not transmitted)
+
+    // Build packet body of 120 bytes until total length of body + header = 125.
+    // 120 is divisible by 1,2,3 and 4, so all normal sample lengths divide
+    // into the packet body evenly without a remainder splitting into the next packet.
+    while (pIndex < 125) {
+      const sampleFloat = saIndex < samples.length ? samples[saIndex++] : 0;
+      const sampleFloatClamped = (Math.max(-1, Math.min(1, sampleFloat)) + 1) * 0.5;
+      let sampleUnsigned = Number((((1 << sampleBits) - 1) * sampleFloatClamped).toFixed());
+      let bitsRemaining = sampleBits;
+
+      const shiftNeeded = (7 - (bitsRemaining % 7)) % 7;
+      sampleUnsigned <<= shiftNeeded;
+      bitsRemaining += shiftNeeded;
+
+      while (bitsRemaining > 0) {
+        const pDatum = (sampleUnsigned >> (bitsRemaining - 7)) & 0x7f;
+        packet[pIndex++] = pDatum;
+        bitsRemaining -= 7;
+      }
+    }
+
+    let checksum = 0;
+    for (let i = 1; i < pIndex; i++)
+      checksum ^= packet[i];
+
+    packet[pIndex++] = checksum & 0x7f; // checksum
+    packet[pIndex++] = 0xf7;            // end system exclusive
+
+    packets.push(packet);
+  }
+
+  return packets;
+}
+
+function midiMessageToString(p: Uint8Array): string {
+  if (p.length === 0) return "";
+  let buf = p[0].toString(16);
+  for (let i = 1; i < p.length; i++)
+    buf = buf.concat(" " + p[i].toString(16));
+  return buf;
+}
+
+
+// Level meter
+//
+
+const levelMeterSpan = document.querySelector<HTMLSpanElement>("span#levelMeterInner")!;
+
+function levelMeterShow(db: number) {
+  const perc = 100 * ((db + 92) / (92 + 20));
+  levelMeterSpan.style.width = perc + "%";
+}
+
+
+// Audio recorder
+//
+
+const recButton = document.querySelector<HTMLButtonElement>("button#record")!;
+const stopButton = document.querySelector<HTMLButtonElement>("button#stop")!;
+
+recButton.onclick = recorderStart;
+stopButton.onclick = recorderStop;
+stopButton.disabled = true;
+
+const sampleIDInput = document.querySelector<HTMLInputElement>("input#sampleID")!;
+
+const recTable = document.querySelector<HTMLTableElement>("table#recordings")!;
+const recTrPrototype = document.querySelector<HTMLTemplateElement>("#recordingPrototype")!;
+
+let recCurNode: HTMLTableRowElement | null = null;
+let recCurFileNameNode: Element | null = null;
+let recCurDurationNode: Element | null = null;
+let recCurStatusNode: Element | null = null;
+let recCurProgressInnerNode: HTMLSpanElement | null = null;
+
+let recSourceNode: MediaStreamAudioSourceNode | null = null;
+let recRmsDbNode: AudioWorkletNode | null = null;
+let recSavingNode: AudioWorkletNode | null = null;
+
+let recBuffers: Float32Array[][] = [[], []];
+let recLength = 0;
+const numChannels = 2;
+let timeout: ReturnType<typeof setTimeout> | null = null;
+const maxTime = 10;
+
+
+function recorderInit(stream: MediaStream) {
+  recorderShutdown();
+  audioContext = new AudioContext();
+  document.addEventListener("unload", recorderShutdown);
+
+  recSourceNode = audioContext.createMediaStreamSource(stream);
+
+  audioContext.audioWorklet.addModule(processorsUrl).then(() => {
+    recRmsDbNode = new AudioWorkletNode(audioContext!, "rms-db-processor");
+    recRmsDbNode.port.onmessage = (event: MessageEvent<number>) => {
+      levelMeterShow(event.data);
+    };
+    recSourceNode!.connect(recRmsDbNode);
+    recRmsDbNode.connect(audioContext!.destination);
+
+    recSavingNode = new AudioWorkletNode(audioContext!, "saving-processor");
+    recSavingNode.port.onmessage = (event: MessageEvent<Float32Array[]>) => {
+      const channels = event.data;
+      for (let i = 0; i < channels.length; i++) {
+        const channel = channels[i];
+        recBuffers[i].push(channel);
+        if (i === 0)
+          recLength += channel.length;
+      }
+      recorderShowDuration(recLength);
+    };
+  });
+}
+
+function recorderShutdown() {
+  if (audioContext) {
+    audioContext.close();
+    audioContext = null;
+  }
+}
+
+// Create a Lucide file-audio icon element for recording rows
+function createFileAudioIcon(): SVGSVGElement {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("width", "16");
+  svg.setAttribute("height", "16");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("fill", "none");
+  svg.setAttribute("stroke", "currentColor");
+  svg.setAttribute("stroke-width", "2");
+  svg.setAttribute("stroke-linecap", "round");
+  svg.setAttribute("stroke-linejoin", "round");
+  // Lucide file-audio paths
+  svg.innerHTML = '<path d="M17.5 22h.5a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v3"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M2 19a2 2 0 1 1 4 0v1a2 2 0 1 1-4 0v-4a6 6 0 0 1 12 0v4a2 2 0 1 1-4 0v-1a2 2 0 1 1 4 0"/>';
+  return svg;
+}
+
+function recorderStart() {
+  // Create new recordings node from template
+  recCurNode = recTrPrototype.content.firstElementChild!.cloneNode(true) as HTMLTableRowElement;
+
+  // Inject the file-audio icon into the icon cell
+  const iconCell = recCurNode.querySelector(".recIcon")!;
+  iconCell.appendChild(createFileAudioIcon());
+
+  recCurFileNameNode = recCurNode.querySelector(".recFileName")!;
+  recCurFileNameNode.textContent = "inbox/" + sampleIDInput.value;
+  recCurDurationNode = recCurNode.querySelector(".recDuration")!;
+  recCurStatusNode = recCurNode.querySelector(".recStatus")!;
+  recCurProgressInnerNode = recCurNode.querySelector<HTMLSpanElement>(".progressInner")!;
+
+  // Insert at top of the recordings list, dropping at the bottom if necessary
+  if (!recTable.childNodes || recTable.childNodes.length === 0)
+    recTable.appendChild(recCurNode);
+  else
+    recTable.insertBefore(recCurNode, recTable.childNodes[0]);
+  if (recTable.childNodes.length > 6)
+    recTable.removeChild(recTable.childNodes[recTable.childNodes.length - 1]);
+
+  // Start actual recording
+  recorderShowDuration(0);
+  recBuffers = [[], []];
+  recLength = 0;
+  recSourceNode!.connect(recSavingNode!);
+  recSavingNode!.connect(audioContext!.destination);
+
+  timeout = setTimeout(() => {
+    recorderStop();
+  }, maxTime * 1000);
+
+  // Update UI buttons
+  recButton.classList.add("!bg-accent");
+  recButton.disabled = true;
+  stopButton.disabled = false;
+}
+
+function recorderStop() {
+  if (timeout) {
+    clearTimeout(timeout);
+    timeout = null;
+  }
+
+  recSourceNode!.disconnect(recSavingNode!);
+  recSavingNode!.disconnect(audioContext!.destination);
+
+  recButton.classList.remove("!bg-accent");
+  stopButton.classList.add("!bg-accent");
+  recCurStatusNode!.textContent = "Uploading...";
+
+  const buffers = numChannels === 2
+    ? [mergeBuffers(recBuffers[0], recLength), mergeBuffers(recBuffers[1], recLength)]
+    : [mergeBuffers(recBuffers[0], recLength)];
+  const monosummed = numChannels === 2 ? monosum(buffers[0], buffers[1]) : buffers[0];
+  console.log("Captured " + monosummed.length + " samples");
+
+  if (midiToDevice) {
+    midiSendSampleDump(parseInt(sampleIDInput.value), audioContext!.sampleRate, monosummed);
+  } else {
+    alert("No midi output device");
+  }
+}
+
+
+function recorderShowDuration(numSamples: number) {
+  const duration = numSamples / audioContext!.sampleRate;
+  const minutes = Math.floor(duration / 60);
+  const seconds = Math.floor(duration - 60 * minutes);
+  const millis = Math.floor(1000 * (duration - 60 * minutes - seconds));
+  recCurDurationNode!.textContent = str2(minutes) + ":" + str2(seconds) + "." + str3(millis);
+}
+
+
+function recorderShowMidiSDProgress(value: number) {
+  if (value > 1) value = 1;
+
+  recCurProgressInnerNode!.style.width = (100 * value) + "%";
+  recCurProgressInnerNode!.textContent = Math.floor(100 * value) + "%";
+
+  if (Math.floor(10000 * value) === 10000) {
+    recCurProgressInnerNode!.classList.replace("bg-accent", "bg-neutral-500");
+  }
+}
+
+
+function mergeBuffers(buffers: Float32Array[], length: number): Float32Array {
+  const result = new Float32Array(length);
+  let offset = 0;
+  for (let i = 0; i < buffers.length; i++) {
+    result.set(buffers[i], offset);
+    offset += buffers[i].length;
+  }
+  return result;
+}
+
+
+function monosum(inputL: Float32Array, inputR: Float32Array): Float32Array {
+  const len = inputL.length;
+  const result = new Float32Array(len);
+  for (let i = 0; i < len; i++) {
+    result[i] = 0.5 * (inputL[i] + inputR[i]);
+  }
+  return result;
+}
+
+
+function str2(n: number): string {
+  if (n > 100) n = n % 100;
+  return n < 10 ? ("0" + n.toString()) : n.toString();
+}
+
+function str3(n: number): string {
+  if (n > 1000) n = n % 1000;
+  return n < 10 ? ("00" + n.toString()) : (n < 100 ? ("0" + n.toString()) : n.toString());
+}
+
+
+// Legal notice
+//
+
+const legalButton = document.querySelector<HTMLButtonElement>("button#legalButton")!;
+const legalNotice = document.querySelector<HTMLDivElement>("div#legalNotice")!;
+const legalCloseButton = document.querySelector<HTMLButtonElement>("button#legalClose")!;
+
+legalButton.onclick = function () {
+  legalNotice.classList.toggle("hidden");
+};
+
+legalCloseButton.onclick = function () {
+  legalNotice.classList.add("hidden");
+};

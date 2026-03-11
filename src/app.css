@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+    --color-accent: #f6660f;
+    --color-accent-dark: #d4550d;
+
+    /* Warm off-white chassis */
+    --color-chassis: #e5e1dc;
+    --color-chassis-light: #edeae6;
+    --color-chassis-dark: #d5d0ca;
+
+    /* Dark OLED surface */
+    --color-surface: #2a2a2e;
+    --color-surface-light: #3a3a3e;
+    --color-surface-border: #1a1a1e;
+
+    /* Utilitarian label grey */
+    --color-label: #7a7670;
+    --color-label-dark: #5a5650;
+
+    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+button {
+    @apply cursor-pointer;
+}
+
+/* Hardware button — dark grey with 3D depth */
+.hw-button {
+    @apply bg-neutral-700 text-white font-medium uppercase tracking-wider;
+    box-shadow:
+        0 4px 0 #404040,
+        0 6px 8px rgba(0, 0, 0, 0.25);
+    transition: transform 0.08s, box-shadow 0.08s;
+}
+
+.hw-button:active {
+    transform: translateY(2px);
+    box-shadow:
+        0 2px 0 #404040,
+        0 3px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* OLED panel — dark inset display area */
+.oled-panel {
+    background: var(--color-surface);
+    border: 1px solid var(--color-surface-border);
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Tiny uppercase utilitarian label */
+.hw-label {
+    @apply text-xs uppercase font-medium text-label;
+    letter-spacing: 0.15em;
+}
+
+/* Segmented VU meter overlay */
+.meter-segment {
+    background-image: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 3px,
+        rgba(0, 0, 0, 0.3) 3px,
+        rgba(0, 0, 0, 0.3) 4px
+    );
+}
+
+/* Subtle dot pattern for chassis texture */
+.chassis-texture {
+    background-image: radial-gradient(
+        circle,
+        rgba(0, 0, 0, 0.06) 1px,
+        transparent 1px
+    );
+    background-size: 6px 6px;
+}

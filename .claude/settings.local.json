@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.elektronauts.com)",
+      "Bash(bunx tsc:*)",
+      "WebFetch(domain:www.elektron.se)"
+    ]
+  }
+}
