@@ -21,7 +21,7 @@
     --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 
-button {
+button:not(:disabled) {
     @apply cursor-pointer;
 }
 
@@ -34,7 +34,7 @@ button {
     transition: transform 0.08s, box-shadow 0.08s;
 }
 
-.hw-button:active {
+.hw-button:active:not(:disabled) {
     transform: translateY(2px);
     box-shadow:
         0 2px 0 #404040,

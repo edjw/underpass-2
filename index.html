@@ -102,6 +102,18 @@
                                 class="w-full rounded-lg border border-surface-border bg-surface-light px-3 py-2 text-sm font-mono text-neutral-200 outline-none transition focus:border-accent"
                             />
                         </label>
+                        <label class="flex items-center gap-3">
+                            <span class="w-28 shrink-0 hw-label"
+                                >Sample Name</span
+                            >
+                            <input
+                                type="text"
+                                maxlength="127"
+                                placeholder="SAMP-01"
+                                id="sampleName"
+                                class="w-full rounded-lg border border-surface-border bg-surface-light px-3 py-2 text-sm font-mono text-neutral-200 outline-none transition focus:border-accent"
+                            />
+                        </label>
                     </div>
 
                     <div class="flex items-center gap-3">
@@ -120,7 +132,7 @@
                     <div class="flex gap-2 pt-2">
                         <button
                             id="record"
-                            class="hw-button flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm active:scale-[0.98]"
+                            class="hw-button flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             <i
                                 data-lucide="circle"
@@ -130,7 +142,8 @@
                         </button>
                         <button
                             id="stop"
-                            class="hw-button flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm active:scale-[0.98]"
+                            class="hw-button flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                            disabled
                         >
                             <i data-lucide="square" class="size-5"></i>
                             Stop
