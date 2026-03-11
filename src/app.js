@@ -31,7 +31,12 @@ enableAudioButton.onclick = function () {
         mainControlsSection.classList.remove("hidden");
         navigator.mediaDevices.ondevicechange(new Event("devicechange"));
         navigator.requestMIDIAccess({ sysex: true }).then(midiAccessSuccess).catch(function (err) {
-            alert("Cannot select MIDI devices in this browser. Try Chrome. Error " + err.name + ": " + err.message);
+            if (err.name === "SecurityError" && err.message.includes("add-on")) {
+                alert("Firefox requires a site permission add-on for Web MIDI SysEx. Please use Chrome, Edge, Brave, or install the required Firefox add-on.");
+            }
+            else {
+                alert("Cannot access MIDI devices. Ensure your device is connected and permissions are granted.\n\nError " + err.name + ": " + err.message);
+            }
         });
     }).catch((err) => {
         console.log("error enabling audio:" + err);
@@ -98,7 +103,7 @@ function enumerateDevicesSuccess(deviceInfos) {
 }
 navigator.mediaDevices.ondevicechange = function () {
     navigator.mediaDevices.enumerateDevices().then(enumerateDevicesSuccess).catch(function (err) {
-        alert("Cannot select audio devices in this browser. Try Chrome. Error " + err.name + ": " + err.message);
+        alert("Cannot select audio devices in this browser. Ensure permissions are granted. Error " + err.name + ": " + err.message);
     });
 };
 // MIDI devices
@@ -181,33 +186,109 @@ function midiAccessSuccess(ma) {
     midiAccess.onstatechange = function () { midiAccessSuccess(midiAccess); };
 }
 let midiSampleDumpPackets = [];
+let midiSampleDumpHeader = null;
 let midiSampleDumpPacketsTotal = 0;
 let midiSampleDumpPacketsSent = 0;
 let midiSampleDumpPacketsAcknowledged = 0;
+let midiTransferNakCount = 0;
+let midiTransferTimeout = null;
+const MIDI_TRANSFER_TIMEOUT_MS = 2000;
+let currentDeviceID = 0;
+function clearMidiTimeout() {
+    if (midiTransferTimeout) {
+        clearTimeout(midiTransferTimeout);
+        midiTransferTimeout = null;
+    }
+}
+function startMidiTimeout() {
+    clearMidiTimeout();
+    midiTransferTimeout = setTimeout(() => {
+        console.error("MIDI Transfer Timeout");
+        abortMidiTransfer("Error: Device timeout");
+    }, MIDI_TRANSFER_TIMEOUT_MS);
+}
+function abortMidiTransfer(reason) {
+    clearMidiTimeout();
+    if (recCurStatusNode)
+        recCurStatusNode.textContent = reason;
+    recButton.disabled = false;
+    stopButton.disabled = true;
+    midiSampleDumpPacketsSent = midiSampleDumpPacketsTotal; // Stop sending
+}
+function midiSendSampleName(deviceID, sampleNumber, name) {
+    const nameBytes = new TextEncoder().encode(name.substring(0, 127));
+    const len = nameBytes.length;
+    const payload = new Uint8Array(9 + len);
+    payload[0] = 0xf0;
+    payload[1] = 0x7e;
+    payload[2] = deviceID & 0x7f;
+    payload[3] = 0x05;
+    payload[4] = 0x03;
+    payload[5] = sampleNumber & 0x7f;
+    payload[6] = (sampleNumber >> 7) & 0x7f;
+    payload[7] = len & 0x7f;
+    for (let i = 0; i < len; i++) {
+        payload[8 + i] = nameBytes[i] & 0x7f;
+    }
+    payload[8 + len] = 0xf7;
+    midiToDevice.send(payload);
+    console.log("Sent Sample Name SysEx:", name);
+}
+function finishMidiTransfer() {
+    clearMidiTimeout();
+    const sampleName = sampleNameInput.value.trim() || `SAMP-${sampleIDInput.value.padStart(2, '0')}`;
+    midiSendSampleName(currentDeviceID, parseInt(sampleIDInput.value), sampleName);
+    console.log("Data transfer complete");
+    if (recCurStatusNode)
+        recCurStatusNode.textContent = "Uploaded";
+    recButton.disabled = false;
+    stopButton.disabled = true;
+    sampleIDInput.value = String(parseInt(sampleIDInput.value) + 1);
+}
 function midiInputMessage(event) {
     const d = event.data;
-    if (d.length !== 6 || d[0] !== 0xf0 || d[1] !== 0x7e || d[2] !== 0x00 || d[5] !== 0xf7) {
+    if (d.length !== 6 || d[0] !== 0xf0 || d[1] !== 0x7e || d[5] !== 0xf7) {
         console.log("Ignoring unknown MIDI message " + midiMessageToString(d));
         return;
     }
-    if (d[3] === 0x7f) { // ack
+    currentDeviceID = d[2];
+    if (d[3] === 0x7f) { // ACK
+        clearMidiTimeout();
+        midiTransferNakCount = 0;
         midiSampleDumpPacketsAcknowledged++;
         const progress = midiSampleDumpPacketsAcknowledged / midiSampleDumpPacketsTotal;
         recorderShowMidiSDProgress(progress);
         if (midiSampleDumpPacketsSent < midiSampleDumpPacketsTotal) {
             midiToDevice.send(midiSampleDumpPackets[midiSampleDumpPacketsSent - 1]);
             midiSampleDumpPacketsSent++;
+            startMidiTimeout();
         }
-        else if (recCurStatusNode.textContent !== "Uploaded") {
-            console.log("Data transfer complete");
-            recCurStatusNode.textContent = "Uploaded";
-            recButton.disabled = false;
-            stopButton.disabled = true;
-            sampleIDInput.value = String(parseInt(sampleIDInput.value) + 1);
+        else if (recCurStatusNode && recCurStatusNode.textContent !== "Uploaded") {
+            finishMidiTransfer();
         }
     }
-    else if (d[3] === 0x7c) { // wait
-        // ignore
+    else if (d[3] === 0x7e) { // NAK
+        clearMidiTimeout();
+        midiTransferNakCount++;
+        if (midiTransferNakCount >= 5) {
+            abortMidiTransfer("Error: Transfer corrupted (Too many NAKs)");
+            return;
+        }
+        console.log("Received NAK, resending packet...");
+        if (midiSampleDumpPacketsSent === 1 && midiSampleDumpHeader) {
+            midiToDevice.send(midiSampleDumpHeader);
+        }
+        else if (midiSampleDumpPacketsSent > 1) {
+            midiToDevice.send(midiSampleDumpPackets[midiSampleDumpPacketsSent - 2]);
+        }
+        startMidiTimeout();
+    }
+    else if (d[3] === 0x7d) { // CANCEL
+        clearMidiTimeout();
+        abortMidiTransfer("Cancelled by device");
+    }
+    else if (d[3] === 0x7c) { // WAIT
+        clearMidiTimeout();
     }
     else {
         console.log("Ignoring unknown MIDI message " + midiMessageToString(d));
@@ -218,10 +299,13 @@ function midiSendSampleDump(sampleNumber, sampleRate, samples) {
     const packets = newMidiSDDataPackets(0, 16, samples);
     recorderShowMidiSDProgress(0);
     midiSampleDumpPackets = packets;
+    midiSampleDumpHeader = header;
     midiSampleDumpPacketsTotal = packets.length + 1;
     midiSampleDumpPacketsSent = 1;
     midiSampleDumpPacketsAcknowledged = 0;
+    currentDeviceID = 0;
     midiToDevice.send(header);
+    startMidiTimeout();
 }
 function newMidiSDHeader(deviceID, sampleNumber, sampleBits, sampleRate, sampleLength, loopStart, loopEnd, loopType) {
     const samplePeriod = 1000000000 / sampleRate;
@@ -310,6 +394,7 @@ recButton.onclick = recorderStart;
 stopButton.onclick = recorderStop;
 stopButton.disabled = true;
 const sampleIDInput = document.querySelector("input#sampleID");
+const sampleNameInput = document.querySelector("input#sampleName");
 const recTable = document.querySelector("table#recordings");
 const recTrPrototype = document.querySelector("#recordingPrototype");
 let recCurNode = null;
@@ -325,10 +410,10 @@ let recLength = 0;
 const numChannels = 2;
 let timeout = null;
 const maxTime = 10;
+window.addEventListener("pagehide", recorderShutdown);
 function recorderInit(stream) {
     recorderShutdown();
-    audioContext = new AudioContext();
-    document.addEventListener("unload", recorderShutdown);
+    audioContext = new AudioContext({ sampleRate: 48000 });
     recSourceNode = audioContext.createMediaStreamSource(stream);
     audioContext.audioWorklet.addModule(processorsUrl).then(() => {
         recRmsDbNode = new AudioWorkletNode(audioContext, "rms-db-processor");
