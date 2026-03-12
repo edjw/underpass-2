@@ -38,19 +38,38 @@ let audioContext: AudioContext | null = null;
 const enableAudioButton = requireElement<HTMLButtonElement>("button#enableAudio");
 const mainControlsSection = requireElement<HTMLElement>("section#mainControls");
 
+function initAudioAndMidi() {
+  enableAudioButton.style.display = "none";
+  mainControlsSection.classList.remove("hidden");
+  navigator.mediaDevices.ondevicechange?.(new Event("devicechange"));
+  navigator.requestMIDIAccess({ sysex: true }).then(midiAccessSuccess).catch(function (err: DOMException) {
+    if (err.name === "SecurityError" && err.message.includes("add-on")) {
+      alert("Firefox requires a site permission add-on for Web MIDI SysEx. Please use Chrome, Edge, Brave, or install the required Firefox add-on.");
+    } else {
+      alert("Cannot access MIDI devices. Ensure your device is connected and permissions are granted.\n\nError " + err.name + ": " + err.message);
+    }
+  });
+}
+
+// Skip the enable button if microphone permission was already granted.
+// We still call getUserMedia because Firefox needs an active stream to enumerate real device labels.
+navigator.permissions.query({ name: "microphone" as PermissionName }).then((status) => {
+  if (status.state === "granted") {
+    navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
+      void stream;
+      initAudioAndMidi();
+    }).catch(() => {
+      // Permission was granted but getUserMedia failed — fall back to button
+    });
+  }
+}).catch(() => {
+  // Permissions API not supported — fall back to button
+});
+
 enableAudioButton.onclick = function () {
   navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
     void stream; // permission grant only — stream is discarded
-    enableAudioButton.style.display = "none";
-    mainControlsSection.classList.remove("hidden");
-    navigator.mediaDevices.ondevicechange?.(new Event("devicechange"));
-    navigator.requestMIDIAccess({ sysex: true }).then(midiAccessSuccess).catch(function (err: DOMException) {
-      if (err.name === "SecurityError" && err.message.includes("add-on")) {
-        alert("Firefox requires a site permission add-on for Web MIDI SysEx. Please use Chrome, Edge, Brave, or install the required Firefox add-on.");
-      } else {
-        alert("Cannot access MIDI devices. Ensure your device is connected and permissions are granted.\n\nError " + err.name + ": " + err.message);
-      }
-    });
+    initAudioAndMidi();
   }).catch((err: Error) => {
     console.log("error enabling audio:" + err);
     alert("Cannot enable audio in this browser:" + err);
