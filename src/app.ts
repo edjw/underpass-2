@@ -440,12 +440,16 @@ function levelMeterShow(db: number) {
 // Audio recorder
 //
 
-const recButton = document.querySelector<HTMLButtonElement>("button#record")!;
-const stopButton = document.querySelector<HTMLButtonElement>("button#stop")!;
+const recToggleButton = document.querySelector<HTMLButtonElement>("button#recordToggle")!;
+let recIsRecording = false;
 
-recButton.onclick = recorderStart;
-stopButton.onclick = recorderStop;
-stopButton.disabled = true;
+recToggleButton.onclick = function () {
+  if (recIsRecording) {
+    recorderStop();
+  } else {
+    recorderStart();
+  }
+};
 
 const sampleIDInput = document.querySelector<HTMLInputElement>("input#sampleID")!;
 const sampleNameInput = document.querySelector<HTMLInputElement>("input#sampleName")!;
@@ -524,6 +528,11 @@ function createFileAudioIcon(): SVGSVGElement {
 }
 
 function recorderStart() {
+  if (!audioContext) {
+    alert("Select an audio input first");
+    return;
+  }
+
   // Create new recordings node from template
   recCurNode = recTrPrototype.content.firstElementChild!.cloneNode(true) as HTMLTableRowElement;
 
@@ -556,10 +565,16 @@ function recorderStart() {
     recorderStop();
   }, maxTime * 1000);
 
-  // Update UI buttons
-  recButton.classList.add("!bg-accent");
-  recButton.disabled = true;
-  stopButton.disabled = false;
+  // Update toggle button to show "Stop" state
+  recIsRecording = true;
+  recToggleButton.querySelector("span")!.textContent = "Stop";
+  const stopIcon = recToggleButton.querySelector("svg")!;
+  const stopI = document.createElement("i");
+  stopI.setAttribute("data-lucide", "square");
+  stopI.className = "size-5 text-accent";
+  stopIcon.replaceWith(stopI);
+  createIcons({ icons: { Square }, nameAttr: "data-lucide", root: recToggleButton });
+  recToggleButton.classList.add("!bg-accent");
 }
 
 function recorderStop() {
@@ -571,10 +586,16 @@ function recorderStop() {
   recSourceNode!.disconnect(recSavingNode!);
   recSavingNode!.disconnect(audioContext!.destination);
 
-  recButton.classList.remove("!bg-accent");
-  stopButton.classList.add("!bg-accent");
-  recCurStatusNode!.textContent = "Uploading...";
-
+  // Reset toggle button to show "Record" state
+  recIsRecording = false;
+  recToggleButton.querySelector("span")!.textContent = "Record";
+  const recIcon = recToggleButton.querySelector("svg")!;
+  const recI = document.createElement("i");
+  recI.setAttribute("data-lucide", "circle");
+  recI.className = "size-5 text-accent";
+  recIcon.replaceWith(recI);
+  createIcons({ icons: { Circle }, nameAttr: "data-lucide", root: recToggleButton });
+  recToggleButton.classList.remove("!bg-accent");
   const buffers = numChannels === 2
     ? [mergeBuffers(recBuffers[0], recLength), mergeBuffers(recBuffers[1], recLength)]
     : [mergeBuffers(recBuffers[0], recLength)];
@@ -582,9 +603,10 @@ function recorderStop() {
   console.log("Captured " + monosummed.length + " samples");
 
   if (midiToDevice) {
+    recCurStatusNode!.textContent = "Uploading...";
     midiSendSampleDump(parseInt(sampleIDInput.value), audioContext!.sampleRate, monosummed);
   } else {
-    alert("No midi output device");
+    recCurStatusNode!.textContent = "No MIDI output";
   }
 }
 
