@@ -1,9 +1,14 @@
 {
-  "name": "underpass",
+  "name": "underpass-2",
   "version": "1.0.0",
   "private": true,
   "description": "A sampling companion for Elektron Model:Samples devices",
   "license": "GPL-3.0-or-later",
+  "author": "Ed Johnson-Williams",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edjw/underpass-2.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
