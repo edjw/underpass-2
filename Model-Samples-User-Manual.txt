@@ -1,0 +1,1209 @@
+Model:Samples User Manual (Elektron, OS 1.13)
+
+3. PANEL LAYOUT AND CONNECTORS
+
+3.1 FRONT PANEL
+
+1. LEVEL/DATA sets the overall volume level of the active track. You also use it to set parameters and navigating menus. The secondary function sets the track pan.
+2. Screen.
+3. [TEMPO] opens the TEMPO menu, where you can adjust the tempo. The secondary function makes it possible to tap the tempo.
+4. [WAVE] opens the SAMPLE ASSIGN menu. The secondary function opens the SWING ALL menu.
+5. [LOOP] loops the sample of the active track. The secondary function opens the QUANTIZE menu.
+6. [REVERSE] reverses the sample of the active track. The secondary function opens the CLICK menu.
+7. TRACK PARAMETER knobs are used for setting parameter values. Press and hold [FUNC], and then turn the knobs to snap to relevant values.
+8. MAIN VOLUME sets the volume for the main outputs and the headphones output. Press and hold MAIN VOLUME to turn the unit on. Press and hold MAIN VOLUME until the countdown on the screen finishes to turn the unit off. The unit will not turn off if you let go of the MAIN VOLUME during the countdown.
+This is to prevent that you turn the unit off accidentally.
+9. REVERB SIZE sets the size of the global reverb effect. The secondary function sets the reverb tone.
+10. DELAY TIME sets the delay time of the global delay effect. The secondary function sets the delay feedback.
+11. [PAGE] selects the active pattern page, if the pattern is made up of more than 16 steps. The <PATTERN PAGE> LEDs indicate how many pattern pages the active pattern consists of, or which pattern page is currently active. The LED flashes on the pattern page currently playing. The secondary function accesses the SCALE menu. This key also activates Fill mode (when GRID RECORDING mode is not active).
+12. [TRIG] keys. Used for entering or removing sequencer trigs and parameter locks, in combination with the TRACK PARAMETER knobs. They are also used to select patterns, in combination with the
+
+[TRACK] and [PATTERN] and [T1–T6] pads. The [TRIG] keys are also used as a keyboard in CHROMATIC mode. The [TRIG] keys lights indicate trigs on the sequencer by lit red keys, while flashing red keys indicates parameter locks, in GRID RECORDING mode. When a pattern is playing, or when LIVE RECORDING is enabled, a light “runs” along the 16 steps of the sequencer across all (up to four) pages at the set tempo.
+13. [T1–T6] (Track 1–6) pads. Triggers the track’s sample and at the same time sets the track to active. The secondary function mutes the track. [PATTERN] + [T1–T6] selects Bank A–F.
+14. [TRACK] key. Press [TRACK] + [T1–T6] to select a track to be active for editing without triggering the track’s sample. The secondary function opens the TRACK SETUP menu.
+15. [PATTERN] + [TRIG 1–16] selects pattern 1–16. [PATTERN] + [T1–T6] selects Bank A–F. The secondary function reloads the active pattern.
+16. [RETRIG] Press and hold [RETRIG] + [T1–T6] to retrig the track’s sample. The secondary function opens the RETRIG SETUP menu. [TRIG] + [RETRIG] opens the TRIG REPEAT menu.
+17. [FUNC] key. Press and hold [FUNC], and then press another key to access the secondary function of that key. The secondary functions are written in underlined text on the Model:Samples front panel.
+18. [LFO] opens the LFO menu. The secondary function opens the LFO SETUP menu.
+19. [RECORD] activates/deactivates GRID RECORDING mode. Keep [RECORD] pressed, then press [PLAY], to activate LIVE RECORDING mode. Activate/deactivate QUANTIZATION of LIVE RECORDING by keeping [RECORD] pressed, then tapping [PLAY] twice. The secondary function is the copy operation.
+20. [PLAY] starts the sequencer playback. Pressing [PLAY] a second time pauses playback. The secondary function is the clear operation.
+21. [BACK] Used for navigating one or more steps up in the menu structure and to revert parameter changes to their previous settings. The secondary function opens the PAD CONFIGURATION menu.
+22. [STOP] stops playback. The secondary function is the paste operation.
+23. [SETTINGS] Opens the CONFIG menu and contains the management of patterns, projects, MIDI and device configuration, and OS updates. The secondary function saves the active pattern.
+
+3.2 REAR CONNECTORS
+
+1. DC IN, Input for power supply. Use the included PSU-4 power adapter, connected to a power outlet.
+2. USB, For connecting the unit to a computer. Use the included USB A to Micro B connector cable to connect to a computer host.
+3. MIDI OUT/THRU, Use the included 3.5 mm (Tip/Ring/Sleeve) to female 5 pin DIN cable to connect – via a standard MIDI cable – to MIDI IN of an external MIDI device or to another MIDI device in the chain.
+4. MIDI IN, MIDI data input. Use the included 3.5 mm (Tip/Ring/Sleeve) to female 5 pin DIN cable to connect – via a standard MIDI cable – to MIDI Out of an external MIDI device.
+5. MAIN OUT R/L, Main audio outputs. Use either 1/4” mono phone plug (unbalanced connection) or 1/4” (Tip/Ring/Sleeve) phone plug (balanced connection).
+6. HEADPHONES, Audio output for stereo headphones. Use 1/4” (Tip/Ring/Sleeve) phone plug.
+
+3.3 SIDE CONNECTOR
+
+1. BATTERY DC In, Input for accessory battery power supply.
+
+3.4 SETTING UP AND STARTING THE MODEL:SAMPLES
+Make sure you place the Model:Samples on a stable support, such as a sturdy table, with sufficient space for the cables. Make sure to switch off all devices before you connect the Model:Samples to other devices.
+1. Plug the supplied DC adapter to a power outlet and connect the small plug to DC IN on the Model:Samples.
+2. Connect MAIN OUT R/L from the Model:Samples to your mixer/amplifier or connect your headphones to the Model:Samples HEADPHONES jack.
+3. To control the Model:Samples from a computer, connect a USB cable between the computer and the USB connector of the Model:Samples.
+4. If you want to use MIDI to control the Model:Samples, connect the MIDI OUT port of the device you wish to send data from to the MIDI IN port of the Model:Samples. If the MIDI OUT/THRU port is set to function as THRU, it duplicates the data arriving at the MIDI IN port, so it can be used for chaining MIDI units together. Connect the MIDI OUT/THRU port of the Model:Samples to the MIDI IN port of the of the device you want to control if you want to use Model:Samples to control other devices. (Set the port to function as OUT.)
+5. Switch on all units. Press and hold MAIN VOLUME for a second to switch on the Model:Samples. (Switching it off is performed in the same way.) When you use the Power Handle accessory to power your device, press and hold MAIN VOLUME for a second and then turn MAIN VOLUME clockwise four ticks to switch the device on. This is an extra precaution to minimize the risk of unintentionally switching on the unit when running on batteries.
+
+It is essential to use MAIN VOLUME when you power off the Model:Samples. Only then the project’s current state is saved. For example, if you connect the Model:Samples to a power strip that you then use to switch the device off, it will revert to its last saved state when you power it on again, and any unsaved edits will be gone.
+
+3.5 POWER HANDLE
+The Elektron BP-1 Power Handle (sold separately) gives you the possibility to make music wherever you want. Just add four AA batteries and connect the Power Handle to your device. The Power Handle also has a tilt stand functionality and is compatible with both Model:Samples and Model:Cycles.
+For more information, please see “11.7 BATTERY”.
+
+3.5.1 CONNECTING THE POWER HANDLE
+1. Insert 4 AA batteries in the Power Handle.
+2. Connect the included battery cable to the Power Handle by pressing and turning it clockwise. (To remove the cable, press and turn it counterclockwise.)
+3. On your device, remove the side covers and fit the Power Handle to the device.
+4. Connect the battery cable to the device’s side connector and fasten the lock nut on the opposite side.
+
+• Use a USB type A connector to tighten the lock nut.
+• If you want to use the Power Handle as a tilt stand, make sure you fold it all the way back and under the device.
+
+• For best performance (up to double usage time compared to alkaline batteries) and for environmental reasons, we recommend using rechargeable NiMH AA batteries.
+
+4. QUICK START
+This quick start guides you through some of the basic operations to start using the Model:Samples right away. First, connect it as described in section “3.4 SETTING UP AND STARTING THE MODEL:SAMPLES”.
+
+4.1 PLAYING THE FACTORY PRESETS
+You can find several preset patterns and samples in the Model:Samples. Follow the instructions below to get started exploring your new instrument.
+1. Press [PATTERN] and then press [T1] pad to select bank A.
+2. Press [TRIG 1] to select the first pattern of bank A.
+3. Press [PLAY] to listen to pattern A01.
+4. Press [PATTERN] and then press [TRIG 2] key to select pattern A02. It will start once pattern A01 is finished. Select pattern A03 by pressing [PATTERN] and then press [TRIG 3] key, and so on.
+5. Press [STOP] to stop playback.
+
+4.2 PLAYING A SAMPLE CHROMATICALLY
+You can use the [TRIG] keys to play any track’s sample chromatically. For more information, please see “7.6 CHROMATIC MODE”.
+1. Make sure you are not in GRID RECORDING or LIVE RECORDING mode. For more information, please see “8.3.2 GRID RECORDING MODE” and “8.3.3 LIVE RECORDING MODE” on page 23.
+2. Press [TRACK] + one of the [T1–6] pads to select the audio track to play chromatically.
+3. Play the [TRIG] keys. The active track Sound is pitched differently for each of the playable keys.
+
+Playing a sample chromatically is an effective way to add musical variety to your beats.
+The timbre, tonality, and impact of playing a sample chromatically depend on the character of the source sample.
+
+4.3 MUTING THE TRACKS
+You can mute the sequencer data for any track.
+1. Make sure a pattern is playing.
+2. Press the [FUNC] + [T1–6] to mute and unmute the corresponding tracks.
+
+• The tracks are muted globally. If you mute a track, it is still muted if you change to another pattern.
+• A muted track is displayed in the screen with a grayed out volume bar.
+
+4.4 SETTING THE TEMPO
+1. Press the [TEMPO] key to open the TEMPO menu
+2. Use the LEVEL/DATA knob to change tempo. Pressing the knob while turning it changes the tempo eight BPM at a time. [FUNC] + turn LEVEL/DATA changes the tempo in decimal steps.
+You can also manually tap a tempo setting. Press and hold [FUNC] key and then tap the [TEMPO] key in a steady rhythm. After four consecutive taps the average tempo of the taps are calculated. By continuing tapping, the average tempo keeps on updating.
+
+4.5 ASSIGNING A SAMPLE TO A TRACK
+You can assign any of the samples in the +Drive to any of the audio tracks.
+1. Press [TRACK] + [T1–6] to select a track.
+2. Press [WAVE] to open the SAMPLE ASSIGN menu.
+
+3. Use the LEVEL/DATA knob to navigate the folder structure to the sample you want to assign. Press [BACK] to navigate up one level in the folder hierarchy if needed. Press the [T1–6] pad of the active track while browsing to listen to the sample currently highlighted. You can also press and hold the [T1–6] pad to let the sequencer play the highlighted sample.
+
+4. Press LEVEL/DATA to select a sample. Press [BACK] to exit the list without selecting a sample.
+
+You can now play the sample either by the sequencer or manually by pressing a [TRIG] or [T1–6] key.
+For more information, please see “12. SAMPLES”.
+
+You can also load up to six samples at the same time.
+In the SAMPLE ASSIGN menu, highlight a folder and then press and hold LEVEL/DATA for a second. A popup appears that reads “LOAD WHOLE DIR” Press “YES” to load up to six samples from that folder to Model:Samples six tracks.
+It checks all files in the directory for a suffix of 1-6 and loads the files matching this criteria to the respective track. If no matching file is found for a track, it fills the blank tracks with the first other not-yet-loaded samples in the folder. So if you have the samples BD01, SD03, MYSAMPLE999, CHORDY and HIHAT6 in a directory, it would load T1=BD01, T2=CHORDY, T3=SD03, T4=MYSAMPLE999 and T6=HIHAT6. T5 will be blank (if it did not previously contain a sample).
+
+4.6 EDITING PARAMETERS
+The Model:Samples parameters affect the sound and signal in various ways.
+1. Make sure a pattern is playing.
+2. Press [TRACK] + [T1–6] pads to select one of the six tracks.
+3. Turn a TRACK PARAMETER knob to affect its corresponding parameter.
+To change, for example, the cutoff of the filter. Turn the knob labeled CUTOFF to change the parameter value, and listen to how the sound changes.
+Try out the rest of the parameters to explore a wide variety of sound shaping possibilities. For more information, please see “9.1 PARAMETER EDITING”.
+
+5. OVERVIEW OF THE MODEL:SAMPLES
+The image below outlines the data structure of the Model:Samples.
+
++DRIVE
+Projects, Samples
+
+PROJECT
+
+576 SAMPLES 96 PATTERNS
+
+6 TRACKS
+(per pattern)
+
+5.1 +DRIVE
+The +Drive is a non-volatile storage. It keeps up to 96 projects stored internally, and it also contains the sample bank. All projects have access to these samples. The +Drive has a capacity of 1 GB.
+
+5.2 DATA STRUCTURE
+5.2.1 PROJECT
+A project contains 96 patterns. General settings and states are also stored in the project. When a project is loaded it becomes the active working state of the Model:Samples. From here it is possible to edit the patterns and samples of the project. Every time the Model:Samples is switched on, it boots to the active working state, the active project. Projects are saved, loaded and managed in the CONFIG menu. For more information, please see “11. CONFIG MENU”.
+
+5.2.2 PATTERNS
+The patterns are the primary data container for the Model:Samples. 16 patterns are available for each of the 6 banks, which means that 96 patterns are available for each project. A pattern contains up to six samples (one for each track) plus 20 additional samples that can be added by using Sample locks, and sequencer data like trigs and parameter locks. It also contains BPM, length, swing and time signature settings. For more information, please see “8. THE SEQUENCER”.
+
+5.2.3 SAMPLES
+You can load up to 64 MB (about 11 minutes) of samples in a project, using a maximum of 576 sample slots. Samples are stored in the +Drive Sample bank. Additional samples can be transferred to the Model:Samples from a computer with the Elektron Transfer software. For more information, please see “12.
+SAMPLES”.
+
+5.3 ABOUT THE SEQUENCER TRACKS
+To select a sequencer track for editing, press [T1–6]. Press [TRACK] + [T1–T6] to select a track without triggering the track’s sample.
+
+5.3.1 TRIGGER SAMPLES
+The Model:Sample’s six sequencer tracks are mainly used to trigger and control samples. Each track can contain one sample together with all the track related parameter settings. For more information, please see “9. TRACK RELATED PARAMETERS”.
+
+5.3.2 SEND MIDI
+All sequencer tracks on the Model:Samples can also be set to send sequencer data through the MIDI OUT or USB ports to control external, MIDI equipped, gear. Each track sends note and velocity data over MIDI. For more information, please see “8.4.2 MOUT”.
+
+SAMPLE OVER- MULTIMODE PLAYBACK AMP PAN TO MIXER
+DRIVE FILTER
+ENGINE
+
+AMP tracks can share the same
+Any MIDI channel can be assigned to a track and several DELAY REVERB channel. If several
+ENVELOPE
+tracks are assigned to the same MIDI channel the track SEND with the lowest number has SEND priority regarding parameter conflicts.
+
+5.4 SOUND ARCHITECTURE
+LFO DESTINATION
+The illustrations below show the Model:Samples sound architecture, with its six audio voices and two send effects (delay and reverb). FADE
+ENVELOPE
+5.4.1 AUDIO VOICES
+
+SAMPLE FROM EFFECT SENDS
+OVER- MULTIMODE
+PLAYBACK AMP PAN TO MIXER
+DRIVE FILTER
+ENGINE
+DELAY TO MIXER
+AMP DELAY REVERB
+REVERB
+ENVELOPE SEND SEND
+SEND
+
+LFO DESTINATION REVERB TO MIXER OR OUTPUTS L/R
+5.4.2 EFFECTS
+FADE
+ENVELOPE DELAY RETURNS
+
+FROM EFFECT SENDS
+FROM AUDIO VOICES MIXER OUTPUTS L/R
+
+DELAY TO MIXER
+REVERB RETURNS
+REVERB
+SEND
+
+REVERB TO MIXER OR OUTPUTS L/R
+
+DELAY RETURNS
+
+FROM AUDIO VOICES MIXER OUTPUTS L/R
+
+REVERB RETURNS
+
+6. INTERACTING WITH THE MODEL:SAMPLES
+
+6.1 MAIN SCREEN
+The screen shows the information used for real-time interaction and editing the Model:Samples.
+
+1. Current bank and pattern
+2. Active track
+3. Battery indicator (visible if you use the Power Handle accessory to power your device)
+4. Track Pan
+5. Track Level
+6. Pattern name
+The battery indicator shows an estimation of the remaining battery power. Its accuracy is dependent on several battery-related factors such as brand, age, previous usage time, number of charging cycles, etc.
+
+6.2 NAVIGATION
+Use the LEVEL/DATA knob to navigate menus and folders. Turn the knob to browse menus, lists, folders, and files. Press the knob to select menu/list items or files, or to open folders.
+Press [BACK] to back one step up in the menu structure. In the sample browser,press and hold [BACK] to back up to the top of the menu structure.
+
+6.3 PARAMETER EDITING
+The TRACK PARAMETER knobs are used to change the values of the track parameters.
+
+6.4 [FUNC] KEY PRESS COMBINATIONS
+The standard way to use the [FUNC] key in combination with other keys, is to press and hold [FUNC] and then make a short press on the second key in the combination.
+
+6.5 COPY, CLEAR, AND PASTE
+Copy, clear and paste commands are available in many contexts. Press [FUNC] + [RECORD] to copy.
+Press [FUNC] + [STOP] to paste. Press [FUNC] + [PLAY] to clear. Paste and clear operations is undone by repeating the key press combination. For more information, please see “8.12.6 COPY, PASTE, AND CLEAR OPERATIONS”.
+
+The copy clipboard can only hold one item at a time. When you perform a copy command, the item copied replaces any earlier copied items. For example, you can not have both a trig and a pattern copied at the same time.
+
+6.6 NAMING MENU
+The naming method is identical for the various naming situations that appear when you save projects and patterns et cetera.
+
+In the NAMING menu, turn the LEVEL/DATA knob to navigate between the character positions. Press and hold [FUNC], and then turn the LEVEL/DATA knob to select a character for the highlighted position.
+[FUNC] + [BACK] deletes the character before the highlighted position.
+Press and hold [FUNC], and then press LEVEL/DATA to toggle between upper and lower case character.
+Once you are done editing the name, press LEVEL/DATA and then press “YES” to save, “ABORT” to cancel, or “EDIT” to keep editing.
+
+Copy, paste, and clear commands are available on the NAMING menu. You can undo Paste and Clear commands by repeating the command.
+
+6.7 CLASS COMPLIANT DEVICE
+The Model:Samples is a class compliant device (also known as plug-and-play). It means it does not require any extra drivers to connect to your computer or other USB class compliant hosts.
+The Model:Samples can, therefore, stream audio and MIDI directly over USB to and from supported computers/phones/tablets. It opens up several exciting possibilities of what you can do with your device, for example, record audio from your device directly over USB in your DAW.
+
+6.8 BACKING UP THE MODEL:SAMPLES
+It is always recommended to make regular backups of your data. Backups are also a convenient way to share your projects, Sounds, and samples with other users. To make backups and transfer files to and from your Elektron device, you should use Transfer, a free application that you can download from the Elektron site https://www.elektron.se/support. The application is available for both Windows and macOS.
+
+6.8.1 BACKING UP PROJECTS AND SAMPLES
+You can backup up your projects and samples from your Elektron device to a computer. Here is the general procedure for how to back up your device:
+1. Connect the Elektron device to the computer via USB.
+2. Open the Transfer application on your computer, and then select the USB MIDI port(s) for your device on the CONNECTION page, and then click “CONNECT” (or click “CONNECT” next to your device under PREVIOUSLY USED if it has been connected before).
+3. In Transfer, click the EXPLORE tab to open the EXPLORE page.
+4. On the EXPLORE page top left side of the drop-down menu, make sure “MY COMPUTER” is selected.
+5. On the top right side, in the drop-down menu, select the type of file you want to transfer.
+6. In the window on the right, navigate to the files or folders you want to transfer
+7. Drag and drop the files or folders to your preferred location under “MY COMPUTER.”
+
+6.8.2 TRANSFERRING BACKED UP FILES TO YOUR ELEKTRON DEVICE
+Use the EXPLORE page in Transfer to transfer previously backed up files to your Elektron device from a computer.
+1. Connect the Elektron device to the computer via USB.
+2. Open the Transfer application on your computer and then select the USB MIDI port(s) for your device on the Transfer CONNECTION page. Click “CONNECT” (or click “CONNECT” next to your device under PREVIOUSLY USED if it had been connected before).
+3. In Transfer, click the EXPLORE tab to open the EXPLORE page.
+4. On the top right side, in the drop-down menu, select the type of file you want to transfer.
+5. On the top left side in the drop-down menu, make sure “MY COMPUTER” is
+selected.
+6. Under “MY COMPUTER,” navigate to the files or folders you want to transfer.
+7. Drag and drop the files or folders to your preferred location on your device.
+8. Depending on what file type you send, you might encounter pop-up windows asking you to decide what files you want to send and how you want to organize them.
+
+7. MODEL:SAMPLES CONTROLS
+
+7.1 TRIG KEYS
+The [TRIG] keys have several uses, including for example, placing trigs in GRID RECORDING mode and playing a sample chromatically. When pressed in combination with the [PATTERN] they select patterns.
+The [TRIG] keys light up to indicate the position of placed trigs and to indicate the selected bank and track.
+
+7.2 ROTARY ENCODERS
+The LEVEL/DATA, MAIN VOLUME and PARAMETER knobs (with which you set various parameter values), are relative encoders which may be spun any number of turns.
+
+7.3 PADS
+The Model:Samples can be played using the [T1–6] pads The responsive pads are made of sturdy synthetic rubber and are velocity sensitive. Pressing a pad triggers its track sound and also sets the pads track to active.
+
+7.3.1 PAD/VEL MENU
+Here you can set several parameters related to the [T1–6] pads. Press [FUNC] + [BACK] to access the PAD menu. Use the LEVEL/DATA knob to navigate the menu and change the parameter settings.
+
+FIX Pad velocity set the pads to trig with a fixed velocity, and sets the value of the fixed velocity. OFF sets the pads to respond to dynamic velocity. (1–127, OFF) VDEP Volume depth sets the depth of the velocity modulation of the volume (amplifier). (0–127) DST Destination selects the modulation destination for the velocity. Preview how the velocity modulation affects the sound by highlighting a destination. For more information, please see “APPENDIX B:
+MODULATION DESTINATIONS”.
+DDEP Destination depth sets the depth and polarity of the velocity modulation. Both negative (inverted) and positive modulation depth is possible. A setting of 0, equals no modulation depth. (-64.0–63.0)
+
+Press and hold [FUNC] + [BACK] for a second to toggle the fixed velocity on/off.
+
+7.4 KEY BEHAVIOR
+As a group, the track selection keys ([T1–6] pads) have radio button functionality, i.e., when a new track is set to be active, the previous one is simultaneously deactivated. You can only select one track at a time.
+The [FUNC], [TRACK], [PATTERN], and [RETRIG] keys are almost always used in combination with other keys.
+
+7.5 MIDI NOTES
+You can use an external MIDI device (a MIDI keyboard or a computer, for example) to send MIDI note values to trig several functions on the Model:Samples.
+Of the 128 notes in the standard MIDI range, Note numbers 0–5 correspond to notes C0 through to F0, the leftmost octave (which is sometimes called C-2–F-2 in some applications). These notes trigger the sample of track 1 through track 6, respectively (provided they are set to their default channels 1-6). These note values map to each of the six tracks, regardless of which track is active.
+MIDI note numbers 12–60 (corresponding to notes C1–C5, the second through to fifth octaves in the MIDI range) trigger the sample of the active track in any of its 49 chromatic variations (as if played by the [TRIG] keys in CHROMATIC mode, see section below), from lowest to highest pitch.
+
+MIDI program change messages 0–95 selects pattern 1–96 (A01–F16) on the Model:Samples. Additionally, MIDI CC messages can be sent to control various aspects of the Model:Samples. For more information, please see “APPENDIX A: MIDI SPECIFICATIONS”.
+
+7.6 CHROMATIC MODE
+In CHROMATIC mode, you can play the sample of the active track chromatically. The CHROMATIC mode is the Model:Samples default mode.
+1. Make sure you are not in GRID RECORDING or LIVE RECORDING mode. For more information, please see “8.3.2 GRID RECORDING MODE” and “8.3.3 LIVE RECORDING MODE”.
+2. Press [TRACK] + [T1–6] pads to select the track you want to play chromatically.
+3. Press the [TRIG] keys to play the sample chromatically with a varying pitch. The range from [TRIG 1] key to [TRIG 16] key is 16 semi-tones. The [TRIG 9] key trigs the sample’s root note (If KBT is set to 0, see below).
+4. You can also transpose the note range that the [TRIG] keys cover. Press [FUNC] + [TRACK] to open the TRACK SETUP menu and use the LEVEL/DATA knob to change the KBT settings. The actual transpose range is -24–24 semi-tones.
+Notes trigged chromatically can be recorded by the sequencer in LIVE RECORDING mode. For more information, please see “8.3.3 LIVE RECORDING MODE”.
+
+You can also use an external keyboard or controller to play the active tracks Sound chromatically. Connect the keyboard to the Model:Samples and configure the external keyboard and the Model:Samples MIDI Auto Channel (SETTINGS > MIDI > CHANNELS) to the same MIDI channel. Then play the keys on the external keyboard to play the active tracks sample chromatically. You can play the active track’s sample chromatically from an external source even when you are not in CHROMATIC mode.
+
+8. THE SEQUENCER
+
+8.1 ABOUT PATTERNS
+The sequencer of the Model:Samples stores information in patterns. The patterns are the primary data container for the Model:Samples. A pattern controls the playback of the six tracks and various pattern-specific aspects of the tracks and contains up to six samples (one for each track). Each of the six banks, A to F, contains 16 patterns, which means 96 patterns are available for each project.
+A pattern contains:
+• General trig settings such as default note pitch, retrig and velocity • The parameter settings • The FX settings for the delay and the reverb • Swing settings • Quantization settings • Note trigs for all tracks • Lock trigs for all tracks • Conditional locks • Sample locks • Length and time signature for the tracks • BPM • Track MIDI ON/OFF • Keyboard transpose
+
+8.2 BASIC PATTERN OPERATIONS
+Model:Samples can seamlessly switch between patterns. This functionality, together with the ability to chain patterns, is a handy feature when improvising live. For more information, please see “8.13 CHAINS” on page 31.
+
+8.2.1 SELECTING BANK AND PATTERN
+Press [PATTERN] and then press [T1–T6] to select a bank. Then press [TRIG 1–16] to select a pattern.
+Press [PATTERN] and then press [TRIG 1–16] to select a new pattern in the current bank. When you press [PATTERN] you must choose a bank or pattern within four seconds for the change to take effect.
+A message on the screen indicates the four-second timeout. Press [PATTERN] again to exit pattern or bank select.
+When a pattern is playing, and a new pattern is selected, the new pattern position is shown flashing on the screen. Once the pattern is finished, the new pattern starts, and the pattern position ceases to flash.
+When you press [PATTERN], lit [TRIG] keys indicate pattern positions that contain data. [TRIG] keys of empty patterns are unlit. The [TRIG] key of the current pattern blinks.
+
+• Patterns can be changed while the sequencer is running.
+• Patterns can be changed and queued by sending program change messages.
+• It is possible to copy a pattern, and then paste it to one or several locations without leaving the active pattern. You can also clear one or several non-active patterns.
+- To copy, press and hold [PATTERN] + [TRIG] key to select the pattern you wish to copy. Then press [RECORD]. Let go of the [TRIG] key and then press and hold the [TRIG] key(s) to where you want to paste the pattern. Finally, press and hold [STOP] to paste the pattern(s).
+- To clear, press and hold [PATTERN] + [TRIG] key(s) to select the pattern(s) you wish to clear. Then press and hold [PLAY] to clear the pattern(s).
+
+8.2.2 PATTERN CONTROL
+Press [PLAY] to start the playback of a pattern. Press [STOP] to stop the playback of all tracks. The sound will stop, but effects like Delay continues to be audible until the delay repeats have faded out.
+Quickly press [STOP] twice to stop playback of all tracks and get just a short fade out the send effects.
+When a pattern is playing and [PLAY] is pressed, playback pauses. Press [PLAY] again to resume the playback.
+If a pattern contains more than 16 sequencer steps, the <PATTERN PAGE> LEDs indicates this. When a pattern is playing, the currently active pattern page is shown with a flashing, <PATTERN PAGE> LED.
+
+8.2.3 PATTERN TEMPO
+The tempo is set in the TEMPO menu. Press [TEMPO] to open this menu. For more information, please see “4.4 SETTING THE TEMPO”.
+
+8.3 EDITING A PATTERN
+Model:Samples offers two main modes of input when editing or creating a pattern, GRID RECORDING mode and LIVE RECORDING mode. In these modes, you can add two types of trigs: note trigs and lock trigs.
+
+8.3.1 TRIG TYPES
+A trig is a sequencer event that you can place when you want the sequencer to perform an action on the Model:Samples. There are two types of trigs that you can use, note trigs and lock trigs.
+• NOTE TRIGS trigger samples or MIDI notes.
+• LOCK TRIGS trigger parameter locks (but does not trigger samples or MIDI notes). For more information, please see “8.12.1 PARAMETER LOCKS”.
+A red [TRIG] key indicates that a note trig is placed on the sequencer step. A slowly blinking red [TRIG] key indicates a lock trig. Unlit [TRIG] keys indicate steps that do not contain any trigs. Trigs are added differently in the sequencer, depending on if GRID RECORDING or LIVE RECORDING mode is active.
+
+8.3.2 GRID RECORDING MODE
+GRID RECORDING is a method of composing where you use the [TRIG] keys to add trigs.
+1. Enter GRID RECORDING mode by pressing the [RECORD] key. The [RECORD] key lights up red to indicate that GRID RECORDING mode is active.
+2. Press [TRACK] + [T1–6] to select the track to which you want to add trigs. A red [T1–6] pad indicates the active track.
+3. Place note trigs on the sequencer using the 16 [TRIG] keys. To add a lock trig, press [FUNC] and [TRIG]. Press the [TRIG] key of any of the previously entered trigs if you wish to remove the trig.
+Press the [TRIG] key of a lock trig to convert it to a note trig. Press a [TRIG] key of a trig and hold it slightly longer to prepare the trig for editing, rather than removing it.
+4. Select another track, and add note trigs. Repeat the procedure for all the tracks you want to use.
+5. Press [PLAY] to listen to the sequence.
+
+Press one or more [TRIG] keys + [RETRIG] to open the RETRIG SETUP menu to change the retrig settings for the note trig. Use LEVEL/DATA to navigate and change the settings.
+For more information, please see “8.6 RETRIG SETUP MENU”.
+If the pattern contains more than 16 steps, select the pattern page you want to edit by pressing the [PAGE] key. A lit <PATTERN PAGE> LED shows the active pattern page.
+Press [RECORD] to exit the GRID RECORDING mode.
+
+• You can use an external MIDI controller such as a keyboard to input NOTE and TRIG VELOCITY data when you are in GRID RECORDING mode. Just press and hold a [TRIG] key, and then play a note on the external keyboard.
+• If you use an external MIDI controller to record to the Model:Samples MIDI tracks, the sequencer receives data on the Auto MIDI channel and records on the active track. For more information, please see “11.3.2 IN CHAN”.
+• All trigs of a track can be shifted forwards or backward on the sequencer. While in GRID RECORDING mode, hold down [TRACK] while turning LEVEL/DATA
+
+8.3.3 LIVE RECORDING MODE
+LIVE RECORDING mode is the second method of adding trigs to the tracks. In this recording mode, the [T1–6] pads, [TRIG] keys, or external MIDI devices are played in real time to input trigs to the tracks. It is also possible to enter parameter locks in real time. Trigs input in LIVE RECORDING mode can be automatically quantized or not. Non-quantized trigs can be quantized after they are recorded, by using the QUANTIZE menu that is accessed by pressing [FUNC] + [LOOP]. For more information, please see “8.9 QUANTIZE MENU”.
+1. Press and hold [RECORD], then press [PLAY] to enter LIVE RECORDING mode. Quickly pressing [PLAY] twice while keeping the [RECORD] key pressed will activate/deactivate automatic quantization of LIVE RECORDING. The sequencer starts to play, and the [RECORD] key starts to flash red.
+2. Enter trigs in real time by pressing the [T1–6] pads. You can also use the [TRIG] keys to add note
+
+8. THE SEQUENCER
+
+trigs chromatically to the active track. Any changes to PARAMETER page settings, using the PARAMETER knobs, will be recorded as parameter locks and add lock trigs where needed.
+3. Press [PLAY] to exit LIVE RECORDING mode while keeping the sequencer playing. If LIVE RECORDING mode is active and [RECORD] is pressed, GRID RECORDING mode will be activated.
+4. Press [STOP] to stop both recording and playback of the sequencer.
+
+You can use an external MIDI controller such as a keyboard to input NOTE and VELOCITY data in LIVE RECORDING mode. Just play the notes on the external keyboard and they will be recorded by the sequencer.
+
+8.4 TRACK SETUP MENU
+Use the TRACK SETUP menu for track-related settings. Press [FUNC] + [TRACK] to access the TRACK SETUP menu. Press [TRACK] + [T1–6] to select the track to which you want to change the settings. Use the LEVEL/DATA knob to navigate and change the parameter settings.
+
+8.4.1 KBT
+Keyboard Transpose sets the transpose value of the note range that the [TRIG] keys cover when you use them to play the samples chromatically. The transpose range is -24–24 semi-tones.
+
+8.4.2 MOUT
+Will, when checked, send the tracks NOTE, VELOCITY, and TRIG LENGTH sequencer data to the Model:Samples MIDI OUT for control of external MIDI devices. The data are sent on the track’s MIDI channel set in the CHANNELS menu. For more information, please see “11.3.3 OUT CHAN”.
+
+If MOUT is checked the following functions also sends MIDI data:
+• PADS The [T1–6] pads sends MIDI note data.
+• TRIG KEYS The [TRIG] keys sends MIDI note data in CHROMATIC mode.
+• MUTE, activating/deactivating mutes sends MIDI.
+• TRACK PARAMETER and FX knobs sends MIDI data on their set channels.
+• Tracks forwards the incoming note data on the AUTO channel from external MIDI controllers to the MIDI OUT port for control of an external device.
+
+• If MOUT is checked, the track sends the sequencer data both externally over MIDI and internally to the tracks sample.
+• Only the sequencer data for the NOTE, VEL, and LEN parameters are sent over MIDI. For more information, please see “8.8 TRIG NOTE MENU”.
+
+8.4.3 PAD
+Defines the default note value of the trigs when pressing a pad. If the track is configured to send MIDI, this is also the note value the pad sends via MIDI.
+
+8.5 TRIG NUDGE MENU
+Here you can add micro timing to a note trig, and nudge it ahead or behind the beat. Nudge can be customized on any of the sequencer steps on the tracks.
+
+1. In GRID RECORDING mode, press and hold one or several [TRIG] keys and then turn SWING to access the TRIG NUDGE menu that shows the time offset for the chosen sequencer trig(s) on the active track.
+2. Turn SWING to set the NUDGE value
+3. Release the [TRIG] key(s) to exit the NUDGE menu.
+
+8.6 RETRIG SETUP MENU
+In this menu you can setup and activate retrigs (additional trigs) that will occur when you play the [T1–6] pads, or the [TRIG] keys to trigger the track’s sound. The retrigs are recorded as separate trigs. If the retrig speed is greater than the duration of a sequencer step, trigs are created with additional internal steps (i.e., steps with retrig enabled). Each of the six tracks can have its own set of retrig settings. The retrig settings are stored to the active pattern. Press [FUNC] + [RETRIG] to access the RETRIG SETUP menu. Use LEVEL/DATA to change the settings.
+
+RTE Sets the retrig rate (1/1, 1/2, 1/3, 1/4, 1/5, 1/6, 1/8, 1/10, 1/12, 1/16, 1/20, 1/24, 1/32, 1/40, 1/48, 1/64 or 1/80). 1/16 is the nominal retrig rate, one trig per step. 1/32 corresponds to two trigs per step and so on.
+To trig triplets, for example, set the retrig rate to 1/12 (or 1/24).
+LEN Sets the duration of the retrig velocity curve in fractions of, or rational or integer multiples of, a step (0,125–INF). 1/16 is the nominal length of one step. This setting affects the behavior of the velocity curve by defining the boundaries of its envelope.
+A.ON Always On sets toggles the retrig function ON/OFF. When on, the retrig activates whenever the pad of the active track is pressed, and there is no need to press [RETRIG] first.
+
+If you press and hold [RETRIG] and then press a pad, it activates the retrig function and play back the sample with the current retrig settings.
+
+8.7 TRIG REPEAT MENU
+The TRIG REPEAT menu is very similar to the RETRIG SETUP menu. The difference is that this menu is used when you want to set up retrig for a specific trig. In GRID RECORDING mode, press and hold one or several [TRIG] keys and then press [RETRIG] to access the TRIG REPEAT menu. Use LEVEL/DATA to change the settings. For more information, please see “8.6 RETRIG SETUP MENU”.
+
+ON/OFF Toggles the retrig function ON/OFF for the chosen trig.
+RTE Same as for RETRIG SETUP menu.
+LEN Same as for RETRIG SETUP menu.
+FDE Sets the velocity curve fade out/fade in of the retrig (-128–127). -128 corresponds to a complete fade out during the set length, -64 fades out to half the velocity during the set length, 0 equals a flat velocity curve with no fade, 64 fades into half velocity during the set length, and 127 fades in completely to full velocity during the set length.
+
+While in TRIG REPEAT menu, press [RETRIG] to toggle retrig ON/OFF.
+
+8.7.1 PLACING A RETRIG ON AN INDIVIDUAL SEQUENCER STEP
+1. In GRID RECORDING mode, press and hold one or several [TRIG] keys and then press [RETRIG] to access the TRIG REPEAT menu that shows the retrig actions for the chosen sequencer step(s) on the active track.
+2. Use the LEVEL/DATA knob to navigate the menu and change the retrig parameter settings. Set retrig to ON.
+3. Release the [TRIG] key(s) to exit the TRIG REPEAT menu. The retrig settings are stored together with the active pattern.
+
+8.8 TRIG NOTE MENU
+IN GRID RECORDING mode, Press and hold one or more [TRIG] keys to access the TRIG NOTE menu. Use LEVEL/DATA to change the settings. Press LEVEL/DATA to toggle between NOTE, VEL, and LEN.
+NOTE sets the pitch of the note when trigged. (-24–+24 semitones for samples. C0–G10 for MIDI notes) VEL sets the velocity of the sequencer’s note trigs. (0–127) LEN Trig Length sets the duration of the notes. When a note has finished playing a NOTE OFF command is sent. The INF setting equals infinite note length. (0.125–128, INF)
+
+The LEN parameters setting is only in use when sending sequencer data over MIDI to external devices. It does not affect the Model:Samples internal sample engine.
+
+8.9 QUANTIZE MENU
+Press [FUNC] + [LOOP] to access this menu. Use LEVEL/DATA to browse and change the settings.
+
+8.9.1 GLOBAL
+Affects all unquantized trigs of all tracks in real time. The higher the parameter value, the more all unquantized trigs are corrected towards the grid.
+
+8.9.2 TRACK 1–6
+Affects all unquantized trigs of the active track in real time. The higher the parameter value, the more all unquantized trigs are corrected towards the grid. Press [T1–6] to select the track to quantize.
+
+8.9.3 APPLY
+Permanently applies the settings made in the GLOBAL and TRACK 1–6 parameters and resets the GLOBAL and TRACK 1–6 settings to 0. Press “YES” to apply the quantization operation, or “CANCEL” to cancel.
+
+8.9.4 LIVE-REC
+Applies quantization to the trigs that you record in LIVE RECORDING mode. (ON, OFF).
+
+Press and hold [RECORD], and then quickly press [PLAY] twice to toggle the LIVE RECORDING quantization on and off.
+
+8.10 CLICK MENU
+The CLICK menu controls the internal metronome. Press [FUNC] + [REVERSE] to open the CLICK menu.
+Use LEVEL/DATA to browse and change the settings.
+
+ON/OFF activates/deactivates the metronome.
+PRE activates a one bar preroll that the metronome sounds before the sequencer starts playing. This setting is only relevant when you are in LIVE RECORDING mode.
+SIG controls the note and beat measure of the metronome time signature.
+VOL controls the volume of the click.
+
+Press and hold [FUNC] + [REVERSE] for a second to toggle click ON/OFF.
+
+8.11 SCALE MENU
+In this menu you can set the length and timing of the pattern and tracks. Press [FUNC] + [PAGE] to access the SCALE menu. Use LEVEL/DATA to browse and change the settings.
+
+MOD Mode can be set to either PATTERN or TRACK. In PATTERN mode all tracks share the same SCALE and LENGTH settings. In TRACK mode, all tracks can have individual SCALE and LENGTH settings. Press [T1–6] to select the track to set the scale for.
+LEN Length sets the step length (amount of steps) of the pattern/track.
+SCL Scale controls the speed of the playback in multiples of the current tempo. It offers seven possible settings, 1/8X, 1/4X, 1/2X, 3/4X, 1X, 3/2X and 2X. A setting of 1/8X plays back the pattern at one-eighth of the set tempo. 3/4X plays the pattern back at three-quarters of the tempo; 3/2X plays back the pattern twice as fast as the 3/4X setting. 2X makes the pattern play at twice the BPM.
+CHG Change controls for how long the active pattern plays before it loops or a cued (the next selected) pattern begins to play. If CHG is set to 64, the pattern behaves like a pattern consisting of 64 steps regarding cueing and chaining. If CHG is set to OFF, the default change length is INF (infinite) in TRACK mode and the same value as LEN in PATTERN mode.
+Trigs are automatically copied when extending the length of a pattern. If a pattern consists of, for example, two pages and the pattern length is increased to four pages, and the two additional pattern pages are copies of the first two pattern pages.
+
+• Press the [PAGE] key and [TRIG] keys to change the number of steps of the pattern quickly.
+• A 2X SCL setting is useful for increasing the base resolution of the step sequencer to 32nd notes. A 3/4X setting is useful when Model:Samples is playing alongside other instruments set to the same BPM, and you want Model:Samples to play triplets.
+
+8.12 SEQUENCER FEATURES
+8.12.1 PARAMETER LOCKS
+Parameter locks make it possible to set every trig to have its unique parameter values. The trigs can, for example, have a different pitch, FX send, or filter settings. It is possible to parameter lock the parameters that are controlled by the PARAMETER knobs, and the NOTE, VEL and LEN settings. You can also
+
+parameter lock the parameters on the LFO menu and the LOOP and the REVERSE settings. For a complete overview of all parameters on the PARAMETER pages, please see “9. TRACK RELATED PARAMETERS”.
+Adding parameter locks in GRID RECORDING mode:
+1. Press [RECORD] to enter GRID RECORDING mode.
+2. Press [TRIG] or [FUNC] + [TRIG] key to add a note trig or a lock trig and to where you want to perform a parameter lock.
+3. Press and hold the [TRIG] key of a previously placed trig (note trig or a lock trig) and then use the PARAMETER knobs to adjust the parameters you want to lock.
+The graphics become inverted for the locked parameter, and the locked parameter values are displayed. The [TRIG] key starts to quickly flash red to indicate that the trig now contains a parameter lock. Also, the LED next to the PARAMETER knobs lights up red to indicate the parameter now has a parameter lock assigned to it on that trig
+4. Press and hold the [TRIG] key of a trig and then press [LOOP] or [REVERSE] to parameter lock these functions on a trig.
+5. Press and hold the [TRIG] key of a trig and then turn LEVEL/DATA to open the TRIG NOTE menu.
+Use LEVEL/DATA to change the NOTE and VEL settings.
+
+Removing a specific parameter lock on a trig in GRID RECORDING mode:
+1. Press and hold the [TRIG] key that contains a parameter lock.
+2. Turn the PARAMETER knob corresponding to the parameter from which you want to remove the parameter lock.
+3. Press [PLAY] to clear the parameter lock.
+4. Press and hold the [TRIG] key that contains a LOOP or REVERSE parameter lock, and then press [LOOP] or [REVERSE] to remove these parameter locks.
+5. Press and hold the [TRIG] key that contains a NOTE, VEL, or LEN parameter lock, to open the TRIG NOTE menu. Press [PLAY] to clear the parameter lock for these parameters.
+Removing all parameter locks on a trig in GRID RECORDING mode:
+1. Remove the note trig and then enter it again.
+Adding parameter locks in LIVE RECORDING mode:
+1. Press and hold [RECORD], then press [PLAY] to enter LIVE RECORDING mode.
+2. Turn a PARAMETER knob or play the [TRIG] keys, to input parameter locks to the active track.
+Note trigs are locked accordingly, and lock trigs that contains the locks are placed on the sequencer steps.
+Removing parameter locks for a specific parameter in LIVE RECORDING mode:
+1. Press and hold [BACK], and then turn the knob related to the parameter you want to remove. Keep pressing [BACK] until the whole pattern has played.
+
+Up to 80 different parameters can be locked in a pattern. A parameter counts as one (1) locked parameter no matter how many trigs that lock it. If for example the cutoff parameter of the filter is locked on every sequencer step, there are still 79 other parameters that can be locked.
+
+8.12.2 SAMPLE LOCKS
+Sample locks are a specific type of parameter locks that lets you assign a specific sample on any step of the sequencer. This powerful feature makes it possible to use several samples on the same sequencer track. On Model:Samples you can sample lock up to 26 different samples in each pattern (six of them are the tracks linked samples).
+The locked samples are added to the LOCKS directory in the root of the Sample Assign menu.
+
+Adding sample locks:
+1. Press [RECORD] to enter GRID RECORDING mode.
+2. Press and hold a [TRIG] key, and then press [WAVE] to open the SAMPLE ASSIGN menu.
+3. Use the LEVEL/DATA knob to navigate the folder structure to the sample you want to lock to the trig. Press [BACK] to navigate up one level in the folder hierarchy if needed. Press the pad of the active track while browsing to listen to the sample currently highlighted.
+4. Press LEVEL/DATA to select a sample.
+
+Removing a sample lock:
+1. Press [RECORD] to enter GRID RECORDING mode.
+2. Press and hold a [TRIG] key that contains a sample lock (the [WAVE] key lights up), and then press [WAVE]. You now see the locked sample highlighted on the screen.
+3. Press LEVEL/DATA to remove the sample lock.
+
+Sample locks lets you use up to 26 different samples in each pattern. Any of those samples can be used on any track.
+
+8.12.3 CONDITIONAL LOCKS
+In GRID RECORDING mode, press and hold a [TRIG] key, and then turn CHANCE to open the TRIG CONDITION menu.
+
+Conditional locks are a specific kind of Parameter locks. Conditional locks give you the possibility to set a number of conditional rules for any trig. These conditional rules are called Trig conditions. They are logical conditions that determines whether a trig set in the sequencer is triggered or not. If the condition is true, then the trig becomes active and affect the track.
+You must first place a trig on the sequencer step to where you want to apply a conditional lock.
+You can use the TRIG COND parameter to set the following trig conditions:
+FILL is true (activates the trig) when FILL mode is active.
+FILL is true when FILL is false. A trig with this trig condition is active when you are not in FILL mode.
+PRE is true if the most recently evaluated trig condition on the same track was true. (PRE and PRE conditions are ignored and not evaluated.) PRE is true when PRE is false. A trig with this trig condition is active if the most recently evaluated trig condition on the same track was false. (PRE and PRE conditions are ignored and not evaluated.) Example 1: Trig 1, 50% = True > Trig 2, PRE = False > Trig 3, PRE = False > Trig 4, PRE = True Example 2: Trig 1, 50% = False > Trig 2, PRE = True > Trig 3, PRE = True > Trig 4, PRE = False NEI is true if the most recently evaluated trig condition on the neighbor track was true. (PRE and PRE conditions on the neighbor track are ignored and not evaluated.) The neighbor track is the track before the active track. For example, track 3 is the neighbor track of track 4. NEI and NEI conditional trigs on track 4 evaluate the conditional trigs placed on track 3. The NEI condition is false if no conditional trigs exist on the neighbor track.
+NEI is true when NEI is false. A trig with this trig condition is active if the most recently evaluated trig condition on the neighbor track was false. (PRE and PRE conditions on the neighbor track are ignored and not evaluated.) 1ST is true the first time the pattern plays (when looped).
+1ST is true when 1ST is false. A trig with this trig condition is always active apart from the first time the pattern plays (when looped).
+X% is a probability condition. There is an X% chance that the trig will be active.
+
+A:B A sets how many times the pattern (or track, if the track length is shorter than the pattern length) plays before the trig condition is true. B sets how many times the pattern (or track, if the track length is shorter than the pattern length) plays before the count is reset and starts over again. This cycle then repeats until you stop the sequencer.
+For example:
+With the setting 1:2, the trig condition is true the first time the pattern plays and then the third, the fifth, and so on.
+With the setting 2:2, the trig condition is true the second time the pattern plays and then the fourth, the sixth, and so on.
+With the setting 2:4, the trig condition is true the second time the pattern plays and then the sixth, the tenth, and so on.
+With the setting 4:7 the trig condition is true the fourth time the pattern plays and then the eleventh, the eighteenth, and so on.
+
+• The sequencer needs to be in FILL mode to activate the conditional lock called FILL.
+For more information, please see “8.12.4 FILL MODE”.
+• Conditional parameter locks are a great way to add variety to a pattern. To set up a grid of mutually exclusive or conclusive note trigs across any of the synth tracks, and throwing some probability locks in there as well (perhaps, in turn, also sporting an array of logically conditioned trigs), is a neat way to make the most minimal of compositions come alive with randomness.
+• Note that random or arbitrary variety, is not the only way of using conditional trigs. They may also be used, for example, to have two different melodic or percussive sequences on the same track, one of which is activated only when FILL mode is active.
+
+8.12.4 FILL MODE
+FILL mode is a trig condition that can be used to create a temporary variation, such as a drum fill, in your pattern.
+You activate FILL mode at any time, and for any duration, by pressing and holding the [PAGE] key when the pattern is playing (GRID RECORDING mode cannot be active). The FILL mode is active for as long as the you hold the key.
+Press [TRACK] + [PAGE] to latch FILL mode The [PAGE] key flashes when you are in FILL mode. Press [TRACK] + [PAGE] again to unlatch FILL mode.
+
+8.12.5 SWING ALL
+Adjust the shared swing setting of the tracks in the pattern, to employ a propulsive, rhythmic groove.
+Press [FUNC] + [WAVE] to open the SWING ALL menu. Use the LEVEL/DATA knob to and change the setting ratio. (OFF, 50–80%.) The default setting is OFF.
+
+When SWING ALL is set to any value except OFF, the track parameter knob SWING controls the SWING ALL value.
+
+If SWING ALL is set to OFF, the tracks SWING parameters previous values are recalled.
+For more information, please see “9.2.11 SWING”.
+
+8.12.6 COPY, PASTE, AND CLEAR OPERATIONS
+Patterns, tracks, track pages, and trigs can be copied, pasted and cleared.
+The active pattern can be copied to another location in the same bank or in another bank. You must deactivate GRID RECORDING mode to perform a pattern copy operation. Press [FUNC] + [RECORD] to copy the pattern. Select another pattern, and then press [FUNC] + [STOP] to paste the copied pattern to this location. Press [FUNC] + [PLAY] to clear a pattern. This clear function will only clear the patterns sequencer data. For more information about totally clearing a pattern, please see “11.1.4 CLEAR” on page 38.
+
+You can also press and hold [PATTERN] + [TRIG 1–16] + [PLAY] to clear all pattern data.
+
+Individual sequencer tracks can be copied, pasted and cleared in the same way as patterns but GRID RECORDING mode must be active.
+Trigs, complete with all parameter lock settings, can be copied, pasted and cleared as well. GRID RECORDING mode needs to be active to access this functionality.
+1. Press and hold one or several trigs and press [RECORD] to perform the copy operation.
+2. Press and hold the [TRIG] key to where you want to paste your trig(s), and then press [STOP] to paste the trig(s). When pasting several trigs, the trigs are placed in relation to the selected target trig.
+3. Clear trig note(s) by holding one or more trigs and press [PLAY].
+4. To clear a specific parameter lock on a trig, press and hold the [TRIG] key, turn the TRACK PARAMETER knob that controls the parameter with the parameter lock, and then and press [PLAY].
+
+• You can undo most copy, paste, and clear operations by repeating the key presses.
+• It is possible to copy, clear and paste one or several patterns without leaving the active pattern. To copy, press and hold [PATTERN] + [TRIG] key to select the pattern you wish to copy. Then press [RECORD]. Let go of the [TRIG] key and then press and hold the [TRIG] key(s) to where you want to paste the pattern. Finally, press and hold [STOP] until the countdown finishes to paste the pattern(s). To clear, press and hold [PATTERN] + [TRIG] key(s) to select the pattern(s) you wish to clear. Then press and hold [PLAY] to clear the pattern(s).
+For more information, please see “14. KEY SHORTCUTS”.
+
+8.12.7 TEMPORARY SAVE AND RELOAD PATTERN COMMANDS
+Patterns can instantly be saved to a temporary memory space and then reloaded again from this space.
+• To perform a temporary save of the active pattern, press [FUNC] + [SETTINGS]. This function is useful to create a restore point when you are live tweaking, but without permanently save your changes.
+• To perform a temporary reload of the active pattern, press [FUNC] + [PATTERN]. It will reload the pattern from when you last used the temporary save command. If you have not done any temporary save, then the pattern reloads from the permanently saved state.
+
+The TEMPORARY SAVE PATTERN and TEMPORARY RELOAD PATTERN commands are great when improvising live. Any changes made to the active pattern, like adding bass line notes or using CONTROL ALL, can immediately be undone. At the same time, the saves and reloads will not affect the pattern in a permanent way.
+
+The TEMPORARY SAVE PATTERN command does not save the pattern permanently, and any changes are lost if you load another project. If you wish to save your changes permanently, you should use SAVE PATTERN in the CONFIG menu. For more information, please see “11.1.2 SAVE”.
+
+8.13 CHAINS
+Chains are sequences that consist of more than one pattern. You can use chains to preselect and automate in what order you want your patterns to play.
+
+You can create one chain, and it can contain any pattern in bank A–H. The chain can consist of up to 64 patterns.
+1. Press and hold [PATTERN] and then press [T1–T6] to select a bank.
+2. While holding [PATTERN] press and hold a [TRIG 1–16] key to select the first pattern in the chain.
+
+3. Press [TRIG 1–16] keys in the same order as you want the chained patterns to play. Keep a previous [TRIG] key pressed while you press the next one, the one after that and so on. You can press the same [TRIG] key again if you wish to add the pattern multiple times in a row. If you want to add a pattern from another bank, press [T1–T6] to select a bank, and then press [TRIG 1–16] to select a pattern.
+4. Press [PLAY] to start the sequencer and play the chain. The chain is looped and starts to play from the beginning again after the final pattern of the chain has played.
+
+• Chains can be created while the sequencer is running.
+• You can also use MIDI program change messages from an external device to change patterns on the Model:Samples. For more information, please see “11.3.1 SYNC” on page 39.
+
+Please note that the chain are lost when you create a new chain or when you select a new bank/pattern. Also, be aware of that chains cannot be saved and are lost when you switch the Model:Samples off.
+
+9. TRACK RELATED PARAMETERS
+Here follows a description of all of the parameters that are available to change the character and behavior of the track’s samples.
+
+9.1 PARAMETER EDITING
+The TRACK PARAMETER knobs are used to change the values of the track parameters.
+
+9.1.1 PARAMETER VALUE JUMP
+Pressing [FUNC] while editing specific parameters makes the parameter values jump to appropriate positions. For example, sample PITCH jumps whole octaves.
+
+9.1.2 PARAMETER REVERT FUNCTION
+If you have changed a parameter setting, you can press [BACK] to revert that change to the parameters previous setting. This function has a time-out function, meaning that, after you adjusted the parameter, you have roughly three seconds to perform the revert operation before the change is permanent.
+Changes made by setting parameter locks are revertable as long as you keep the [TRIG] key pressed.
+
+9.1.3 CONTROL ALL
+If you press and hold [TRACK] and use the TRACK PARAMETER knobs to change a parameter setting, this change affects this parameter in all the tracks in the pattern. You can also use the Parameter Revert function on Control All operations.
+
+The Control All operation is also available for the track LEVEL/PAN and also for the LOOP and REVERSE settings.
+
+9.2 TRACK PARAMETERS
+The track parameters may be parameter locked to other settings on any step of the pattern by (in GRID RECORDING mode) first pressing and holding a [TRIG] key, and then changing the parameters’ settings with the TRACK PARAMETER knobs. For more information, please see “8.12.1 PARAMETER LOCKS” on page 27.
+
+9.2.1 PITCH
+Sample Pitch sets the tuning of the sample. This parameter is bipolar, and a value of 0 leaves the pitch unchanged. (-24–+24, equivalent to four octaves.)
+
+9.2.2 DECAY
+Amp Decay sets the length of the decay phase of the amp envelope. (0–126, INF)
+
+9.2.3 SAMPLE START
+Sample Start sets the start position for playback of the sample. (0–120)
+
+9.2.4 SAMPLE LENGTH
+Sample Length sets the length of the playback of the sample. The Sample Length is defined from the Sample Start position, so if you change the Sample Start value, you also change the Sample Length position. (0–120) The SAMPLE START and SAMPLE LENGTH parameters with LOOP set to ON.
+Sample
+Start Sample Length
+
+9.2.5 CUTOFF
+Filter Cutoff sets the cutoff frequency of the low-pass/high-pass filter. Negative parameter values make the filter function as a low-pass filter. Positive parameter values make the filter function as a high-pass filter. (-64–+63)
+
+9.2.6 RESONANCE
+Filter Resonance sets the resonance behavior of the filter. Resonance introduces a peak in the spectrum at the cutoff frequency. (0–127)
+
+9.2.7 DELAY SEND
+Delay Send sets the amount of the sound that is sent through to the Delay effect. For more information, please see “10. FX PARAMETERS”. (OFF, 1–127)
+
+9.2.8 REVERB SEND
+Reverb Send sets the amount of the sound that is sent through to the Reverb effect. For more information, please see “10. FX PARAMETERS”. (OFF, 1–127)
+
+9.2.9 LFO SPEED
+LFO Speed sets the speed of the LFO. Try settings of 8, 16 or 32 to sync the LFO to straight beats. The knob is bipolar. The LFO cycle can be played backward by using negative values. You find more LFO settings in the LFO and LFO SETUP menus. For more information, please see “9.6 LFO MENU” on page 35, and “9.7 LFO SETUP MENU”. (-64–63)
+
+9.2.10 VOLUME + DIST
+Volume + Dist sets the level of the sample. The default setting is 60. Higher settings than 60 gradually increase the volume and distortion. (0–127)
+
+9.2.11 SWING
+Adjust the swing setting of the track, to employ a propulsive, rhythmic groove. The default setting is equal spacing, 50%. If SWING ALL is set to anything else than OFF, then the SWING parameter on all tracks controls the SWING ALL parameter value. For more information, please see “8.12.5 SWING ALL” on page
+30. (50%– 80%)
+
+9.2.12 CHANCE
+Track Chance sets the probability that the trigs on the track plays or not. The probability outcome is re-evaluated every time a trig is set to play. The default setting is 100%, meaning that all the trigs on the track plays every time. (0%–100%)
+
+If you have placed a conditional lock on a trig in the sequencer, the trig condition overrides the CHANCE setting. For example, if you set CHANCE to 70% and a FILL trig condition on the trig, the trig will only (and always) play when the Model:Samples is in FILL mode. For more information, please see “8.12.4 FILL MODE”.
+
+9.3 WAVE
+Press [WAVE] to open the SAMPLE ASSIGN menu. Here you can browse the list of the samples in the +Drive and assign them to the tracks. Use the LEVEL/DATA knob to navigate to the sample you want to assign.
+
+Turn the knob counter-clockwise to scroll up the list, clockwise to scroll down the list. Press the [TRIG] key of the active track while browsing to listen to the sample currently highlighted. For more information, please see “12.3 ASSIGNING A SAMPLE TO A TRACK”.
+
+The WAVE parameter cannot be parameter locked.
+
+9.4 LOOP
+Press [LOOP] to loop the sample of the active track. The [LOOP] key toggles the play mode on and off.
+• OFF The sample plays only once per trig. (Key unlit)
+
+• ON When trigged, the sample loops continuously between the positions in the sample defined by the SAMPLE START and SAMPLE LENGTH parameters. The DECAY setting decides the duration of the loop. (Key lit red)
+
+The LOOP parameter can be parameter locked. In GRID RECORDING mode, press and hold a [TRIG] key, and then press [LOOP]. For more information, please see “8.12.1 PARAMETER LOCKS”
+
+9.5 REVERSE
+Press [REVERSE] to reverse the playback direction of the sample of the active track. The [REVERSE] key toggles between the two play modes.
+• FORWARD The sample plays back normally once every time it is trigged. (Key unlit) • REVERSE The sample plays back in reverse once every time it is trigged. (Key lit red)
+
+The REVERSE parameter can be parameter locked. In GRID RECORDING mode, press and hold a [TRIG] key, and then press [REVERSE]. For more information, please see “8.12.1 PARAMETER LOCKS”.
+
+9.6 LFO MENU
+The Low-Frequency Oscillator can be used to modulate the track parameters. Set the low-frequency oscillator shape, speed multiplication, destination and depth on this page. Use the LEVEL/DATA knob to navigate the menu and change the parameter settings.
+The LFO SPEED parameter sets the speed of the LFO. For more information, please see “9.2.9 LFO SPEED”.
+Press [LFO] to access the LFO menu.
+
+9.6.1 WAV
+Waveform sets the LFO waveform. There are seven waveforms: Triangle, Sine, Square, Sawtooth, Envelope, Ramp, and Random.
+
+The Envelope (ENV) waveform makes the LFO behave differently. If you select ENV, the LFO starts from the beginning of its cycle every time a note is trigged (The RST parameters setting is ignored), run for one cycle and then stop (one-shot). This makes it very useful as an envelope. The waveform is similar to a sawtooth but with an exponential decay.
+The LFO SPEED and MUL sets the length of the decay.
+The ENV waveform can also be used when you want to have a sound with slower attack:
+Make sure [GATE] is on and Fixed velocity (FIX) is OFF. In the LFO menu set WAV: ENV, MUL: x1, DST: DIST, and DEP: -64.
+The LFO SPEED and MUL parameters now set the length of the attack.
+
+9.6.2 MUL
+Multiplier multiplies the SPD parameter by the set factor either by multiplying the current tempo (these settings have an “X” prefix before the multiplier numbers), or by multiplying a fixed tempo of 120 BPM (basically letting the LFO run free and disregard the current tempo of the device).
+
+9.6.3 DST
+Destination selects the modulation destination for the LFO. Preview how the LFO modulation affects the sound by highlighting a destination. For more information, please see “APPENDIX B: MODULATION DESTINATIONS”.
+
+9.6.4 DEP
+Depth sets the depth and polarity of the LFO modulation. Both negative (inverted) and positive modulation depth is possible. A center setting, 0, equals no modulation depth. (-64.0–63.0)
+
+• Press and hold [LFO] and then turn a TRACK PARAMETER knob to set that knobs parameter as an LFO modulation destination. Keep turning the TRACK PARAMETER knob to set the modulation depth. This functionality is also available on individual steps on the sequencer using parameter locks. See below.
+• The LFO menu parameters can be parameter locked. In GRID RECORDING mode, press LFO to open the LFO menu. Press and hold a [TRIG] key, and then use LEVEL/DATA to change the settings. For more information, please see “8.12.1 PARAMETER LOCKS” on page 27.
+
+LFO speed (measured in whole note values) generated by combinations of the LFO SPEED and MUL settings.
+
+MUL
+1 2 4 8 16 32 64 128 256 512 1K 2K L 1 128 64 32 16 8 4 2 1 1/2 1/4 1/8 1/16 F O 2 64 32 16 8 4 2 1 1/2 1/4 1/8 1/16 1/32 4 32 16 8 4 2 1 1/2 1/4 1/8 1/16 1/32 1/64 S P 8 16 8 4 2 1 1/2 1/4 1/8 1/16 1/32 1/64 1/128 E 16 8 4 2 1 1/2 1/4 1/8 1/16 1/32 1/64 1/128 1/256 E 32 4 2 1 1/2 1/4 1/8 1/16 1/32 1/64 1/128 1/256 1/512 D 64 2 1 1/2 1/4 1/8 1/16 1/32 1/64 1/128 1/256 1/512 1/1024
+
+9.7 LFO SETUP MENU
+In the LFO SETUP menu, you can customize the low-frequency oscillator’s behavior and orientation. Use the LEVEL/DATA knob to navigate and change the parameter settings.
+Press [FUNC] + [LFO] to access the LFO SETUP menu.
+
+9.7.1 RST
+Reset sets if the LFO should restart its phase every time a note is trigged.
+• OFF is the default free-running mode. It makes the LFO run continuously, never restarting or stopping even if notes are trigged.
+• ON makes the LFO restart when a note is trigged.
+
+9.7.2 FDE
+Fade In/Out makes it possible to fade in/fade out the LFO modulation. The parameter is bipolar. Positive values give a fade-out, negative values give a fade in. 0 gives no fade in/fade out. (-64–63)
+
+9.7.3 SPH
+Start Phase sets the point within the wave cycle where the LFO starts when it is trigged. 0 makes the LFO start at the beginning of a complete wave cycle, 64 makes it start at the center. (0–127)
+
+The parameters in the LFO SETUP menu cannot be parameter locked.
+
+10. FX PARAMETERS
+In this chapter we will have a look at the Model:Samples effect parameters.
+
+10.1 REVERB
+The Reverb send effect controls the persistence, and ambient characteristics, of the sound reverberations.
+It can simulate many different sonic locations, from huge spaces to small rooms.
+
+10.1.1 REVERB SIZE
+Sets the length of the decay time of the reverberated signal, essentially setting the size of the acoustic space. (1–127, INF)
+
+10.1.2 REV TONE
+Reverb Tone changes the tone of the reverb by dampening either the low frequencies or the high frequencies of the reverberated signal. The parameter is bipolar. Positive values dampen the low frequencies. Negative values dampen the high frequencies. (-64–63)
+
+10.2 DELAY
+The Delay send effect takes the input signal, delays it in time and then blends it with the original signal.
+
+10.2.1 DELAY TIME
+Delay Time sets the delay time. It is relative to the current BPM and measured in 128th notes. (1.00–128.00)
+
+TIME setting Divide ratio
+1 1/128
+2 1/64
+3 1/64.
+4 1/32
+6 1/32.
+8 1/16
+12 1/16.
+16 1/8
+24 1/8.
+32 1/4
+48 1/4.
+64 1/2
+96 1/2.
+128 1
+
+10.2.2 DEL FEEDBACK
+Delay Feedback sets the amount of delay output signal to feed back into the input of the delay. With higher parameter settings, infinite and/or swelling delays are possible. Please be aware that high feedback can lead to a very loud signal. (0–198)
+
+11. CONFIG MENU
+The CONFIG menu offers settings that affect Model:Samples and here you can also manage Patterns and Projects.
+Press [SETTINGS] to access the CONFIG menu. Use LEVEL/DATA to browse and change the settings.
+Press LEVEL/DATA to select list items, or to open folders.
+
+11.1 PATTERN
+
+11.1.1 RENAME
+Opens a NAMING menu where you can rename the active pattern. For more information, please see “6.6 NAMING MENU”.
+
+11.1.2 SAVE
+You must have saved the project at least once before you can save pattern information. You will be prompted to save the project first. If you try to save a pattern to an unsaved project.
+Saves the active pattern’s sequence data and sound data to the project. It also opens a NAMING menu where you can rename the active pattern before saving the pattern. A prompt then appears when you select this option. Press “YES” to save, or “NO” to cancel the operation.
+
+You can also press and hold [FUNC] + [SETTINGS] for a second to access the Save pattern functionality.
+
+11.1.3 RELOAD
+You must have saved the pattern at least once before you can reload pattern information.
+Reloads the active pattern’s sequence data and sound data from the +Drive. A prompt appears when you select this option. Press “YES” to reload, or “NO” to cancel the operation.
+
+You an also press and hold [FUNC] + [PATTERN] for a second to access the reload pattern functionality.
+
+For more information, please see “8.12.7 TEMPORARY SAVE AND RELOAD PATTERN COMMANDS” on page 31.
+
+11.1.4 CLEAR
+• ALL DATA Clears the active pattern’s sequencer data, sound and all pattern settings. A prompt appears when you select this option. Press “YES” to clear, or “NO” to cancel the operation. Note that no pattern information is permanently lost until the pattern is saved. (To the same pattern slot.) You can also press and hold [PATTERN] + [TRIG] (one or several) + [PLAY] to clear all pattern data.
+• SOUND Clears the active pattern’s samples loaded to the tracks with their parameter settings. The sequencer data remains unchanged. A prompt appears when you select this option. Press “YES” to clear, or “NO” to cancel the operation. Note that no sound information is permanently lost until the pattern is saved. (To the same pattern slot.) [TRACK] + [PLAY] clears active track’s Sound.
+• SEQUENCE Clears the active pattern’s sequence data. All samples will remain unchanged. A prompt
+
+appears when you select this option. Press “YES” to clear, or “NO” to cancel the operation. Note that no sequencer information is permanently lost until the pattern is saved. (To the same pattern slot.)
+
+11.2 PROJECT
+
+Select PROJECT to open the Project Manager. It lets you manage your projects and create, load, clear and save projects. An inverted slot number denotes the active project. Use LEVEL/DATA to browse projects and then push LEVEL/DATA to open a popup menu that gives you the following options:
+LOAD Loads the selected project. This operation overwrites the active project!
+SAVE Saves the active project to the selected slot. If you wish to save the project to an empty slot select a ----- slot at the bottom of the list. A NAMING menu opens where you can name the project when you select this option.
+DELETE Resets the project slot to a clean state. A prompt appears asking if you want to execute the operation. Turn LEVEL/DATA to select YES or NO. Press LEVEL/DATA to execute.
+To create a new project, select NEW at the top of the project list. The new project is empty. This operation overwrites the active project!
+
+If you load a project or create a new one, it overwrites the active project. Be sure to save your active project before you load or create a new project.
+
+11.3 MIDI
+In this menu, you find various sub-menus dealing with the MIDI functionality of Model:Samples.
+
+11.3.1 SYNC
+Controls how Model:Samples receives and sends MIDI clock and transport commands. Use LEVEL/ DATA to browse and change the settings.
+
+CLK IN will, when set to ON, make Model:Samples respond to MIDI clock and MIDI transport messages sent from external devices.
+CLK OUT will, when set to ON, make Model:Samples transmit MIDI clock and MIDI transport messages.
+PCH IN will, when set to ON, make Model:Samples respond to incoming program change messages, which is useful when wanting to select patterns externally. You set the MIDI channel for the program change messages in the MIDI CHANNELS menu. For more information, please see “11.3.2 IN CHAN”.
+PCH OUT will, when set to ON, make Model:Samples send program change messages when one pattern changes to another. You set the MIDI channel for the program change messages in the MIDI CHANNELS menu. For more information, please see “11.3.3 OUT CHAN”.
+
+11.3.2 IN CHAN
+This menu handles the MIDI input channel configuration. Use LEVEL/DATA to browse and change the settings.
+
+T1–6 IN selects the dedicated MIDI channel that is used to receive parameter data to a specific track. If configured as OFF, parameter data are not received via MIDI.
+FX IN selects the dedicated MIDI channel for the DELAY and REVERB parameters, If configured as OFF, parameter data are not receive d via MIDI.
+AUTO IN selects the MIDI channel for the AUTO channel that gives access to the currently active track. If an external MIDI keyboard connected to Model:Samples sends MIDI data on this channel, the keyboard controls the active track. This is useful when for example quickly changing between the active audio tracks to play different Sounds.
+
+The Model:Sample uses the Tracks dedicated channels and the AUTO channel to record to the sequencer tracks from external MIDI keyboards and controllers.
+
+PCH IN selects the MIDI channel that listens for incoming program change messages. An AUTO setting uses the AUTO channel. Enable Model:Samples to respond to program change messages in the SYNC menu. For more information, please see “11.3.1 SYNC”.
+
+11.3.3 OUT CHAN
+This menu handles the MIDI output channel configuration. Use LEVEL/DATA to browse and change the settings.
+
+T1–6 OUT selects the dedicated MIDI channel that is used to send (by turning the knobs) parameter data from a specific track. If configured as OFF, parameter data are not sent via MIDI.
+
+A track must be set to send MIDI data to send MIDI data using the TRACK PARAMETER and FX knobs. For more information, please see “8.4.2 MOUT”.
+
+FX OUT selects the dedicated MIDI channel for the DELAY and REVERB parameters, If configured as OFF, parameter data are not sent via MIDI.
+PCH OUT selects the MIDI channel that sends program change messages when changing patterns.
+Enable Model:Samples to send program change messages in the SYNC menu. For more information, please see “11.3.1 SYNC”.
+
+11.3.4 PORTS
+Here you find the MIDI port-related settings. Use LEVEL/DATA to browse and change the settings.
+
+INP FROM selects the source Model:Samples receives MIDI data from.
+• OFF makes Model:Samples disregard any incoming MIDI data.
+• MID makes Model:Samples listen only to MIDI data sent to the MIDI IN port.
+• USB makes Model:Samples listen only to MIDI data sent to the USB port.
+• M+U makes Model:Samples listen to MIDI data sent to both the MIDI IN and USB ports.
+OUT TO selects the destination to which Model:Samples will send MIDI data.
+• OFF stops Model:Samples from sending out any MIDI data.
+• MID makes Model:Samples send MIDI data to the MIDI OUT port only.
+• USB makes Model:Samples send MIDI data to the USB port only.
+• M+U makes Model:Samples send MIDI data to both the MIDI OUT and USB ports. This setting will slow the data transfer over USB down to the max speed for data transfer over MIDI.
+OUT POL Output polarity sets the polarity of the MIDI OUT port to accommodate the two different versions of 3.5 mm (Tip/Ring/Sleeve) to female 5 pin DIN cable wiring. The MIDI IN port accepts any polarity and does not need to be configured.
+• STD Standard (“Type A”, Tip: current sink, Ring: current source, Sleeve: shield) • INV Inverted (“Type B”, Tip: current source, Ring: current sink, Sleeve: shield) OUT/THRU sets if the MIDI OUT/THRU port should function as an OUT or THRU port.
+
+11.3.5 FILTER
+Here you find the MIDI filter related settings. Use LEVEL/DATA to browse and change the settings.
+
+RCV NOTE ON makes it possible to play Model:Samples using an external MIDI keyboard or controller.
+RCV CC ON makes it possible to control Model:Samples parameters from an external MIDI device sending CC/NRPN data.
+ENCS controls whether the TRACK PARAMETER, FX PARAMETER and LEVEL/DATA knobs sends MIDI data or not.
+• INT, the knobs only affect the Model:Samples and does not send any MIDI data.
+• I+E, the knobs affect the Model:Samples and also send MIDI data to external devices.
+
+If ENCS is set to INT, the encoders will not send MIDI to external devices even if the track is set to send MIDI out. For more information, please see “8.4.2 MOUT” on page 24.
+
+11.4 AUDIO
+In this menu, you specify audio-related settings for the Model:Samples. Use LEVEL/DATA to browse and change the settings.
+
+11.4.1 HP MAX
+The parameter sets the limit of the Headphones volume. This setting is useful if you want to have different volume settings for MAIN out and HEADPHONES OUT, for example to protect your ears and your headphones if you want to turn up the MAIN OUT volume really loud. You can see the HP MAX setting as a little headphones symbol when you turn the MAIN VOLUME knob.
+
+11.4.2 INT OUT
+Sets if Model:Samples sends internal audio to the MAIN OUT and HEADPHONES OUT or not.
+OFF sends no audio.
+AUT sends audio unless you are sending and receiving audio over USB. If so, the Model:Samples detects this and sends no internal audio to MAIN OUT and HEADPHONES OUT.
+ON sends audio.
+
+11.4.3 TRK OUT
+Sets if the separate tracks sends audio to the MAIN OUT, HEADPHONES OUT, and USB or not. Use the [T1–T6] pads to toggle the tracks on and off.
+
+11.4.4 DEL OUT
+Sets if the delay effect sends audio to the MAIN OUT, HEADPHONES OUT, and USB or not.
+
+11.4.5 REV OUT
+Sets if the reverb effect sends audio to the MAIN OUT, HEADPHONES OUT, and USB or not.
+
+11.4.6 USB GAIN
+Sets the gain level of the audio sent from the USB audio host to the Model:Samples. This setting only affects the audio sent from the USB audio host to the analog MAIN OUT and HEADPHONES outputs. (0 dB–+18 dB)
+
+11.5 SYSEX BACKUP
+Here you can send and receive project or pattern data in SysEx format to a receiving device for backup via the MIDI port or the USB port of the Model:Samples.
+When sending or receiving SysEx data, the MIDI ports or the USB port of the Model:Samples must be connected to the external sending/receiving device.
+
+11.5.1 SENDING BACKUP PROJECT/PATTERN DATA
+Press LEVEL/DATA to initiate SysEx data transfer of the current project. Use LEVEL/DATA to select if you want to send project or pattern data.
+
+Before initiating a SysEx send, first, make sure the receiving device is listening for data.
+
+11.5.2 RECEIVING BACKUP DATA
+Model:Samples is continuously listening for SysEx data so you can at any time send backed up projects or patterns to the device.
+
+• Please note that the backup only sends and receives project/pattern data. It does NOT send or receive samples. You can use Transfer to send and receive samples. For more information, please see “12.6 TRANSFERRING SAMPLES”.
+• The backup data sent to the Model:Samples overwrites all data in the active project.
+
+11.6 UPGRADE
+Use this menu option when you want to upgrade the Model:Samples OS. To send the OS syx file, use our free Elektron Transfer software. You can download the OS syx file and Transfer from the Elektron website.
+Please note that the Model:Samples will not appear as an icon on your computer desktop.
+
+11.6.1 UPGRADING OS IN STANDARD MODE
+1. Connect the Elektron device to the computer via USB and switch it on.
+2. Open the Transfer application on your computer.
+3. On the Transfer CONNECTION page, set the MIDI IN and MIDI OUT ports to your Elektron device.
+4. On the Transfer DROP page, drag and drop the OS file. The OS file is then automatically transferred to the Elektron device and the OS update initiates. A progress bar is visible on device screen when receiving the OS.
+5. On your device. Press ”YES” to confirm the OS update.
+When the process is successfully completed, the OS is updated and the unit reboots.
+
+11.6.2 UPGRADING OS USING SYSEX TRANSFER MODE
+If your device OS (or device) does not support OS upgrade in STANDARD mode you are automatically redirected to the SYSEX TRANSFER mode. If so, jump to step 4 in the procedure below. The SYSEX TRANSFER mode is also used when you upgrade your OS from the STARTUP menu. For more information, please see “13.4 OS UPGRADE”.
+1. Connect the Elektron device to the computer via USB (can not be used when you upgrade from the STARTUP menu) or MIDI and switch it on.
+2. Open the Transfer application on your computer.
+3. On the Transfer CONNECTION page, click “go to the SYSEX TRANSFER page””
+4. On the SYSEX TRANSFER page, click “OS Upgrade via device startup menu”, and then follow the on-screen instructions.
+5. On your device, navigate to CONFIG > UPGRADE, and then press ”YES” to initiate the OS update.
+6. In Transfer, press “SEND”.
+When the process is successfully completed, the OS is updated and the unit reboots.
+
+11.7 BATTERY
+Here you can set the type of battery used and configure the Auto power off functionality. For more information, please see “3.5 POWER HANDLE”.
+
+11.7.1 BAT TYPE
+Here you select which type of battery (alkaline or nickel-metal hydride) you are using in the Power Handle accessory. The setting is important for the battery indicator icon to display the remaining battery power more accurately. (ALK, NiHM)
+
+11.7.2 AUTO OFF
+To prevent unnecessary power consumption, the Auto power off functionality automatically turns the power off if the device is not operated for the specified amount of time. (OFF, 5m, 10m, 20m)
+
+• The device automatically saves the device’s current state before it turns itself off using the Auto power off functionality or when the battery power is depleted. However it is always recommended that you save your work and power off using MAIN VOLUME to ensure that no unsaved edits are lost.
+• When the batteries are close to being depleted, the LCD/LED brightness settings will switch to MID, and the device will shortly after that power down.
+
+11.8 DEVICE
+Use this menu to set various device related settings.
+
+11.8.1 USB MODE
+Selects which functionality Model:Samples has over USB.
+A+M Model:Samples functions both as a sound card and as a MIDI interface.
+MID Model:Samples functions as a MIDI interface.
+
+11.8.2 LCD
+Sets the brightness of the LCD screen. (LOW, MID, MAX)
+
+11.8.3 LED
+Sets the brightness of the LED lights and buttons. (LOW, MID, MAX)
+
+• The brighter the LCD and LED settings, the quicker the batteries will be depleted when using the Power Handle.
+• The brightness settings for the LCD and the LED have separate power schemes when you use the power supply and when you use the Power Handle. The device automatically switches between these schemes depending on your chosen power source.
+
+11.8.4 CONTRAST
+Sets the screen contrast. (1–9)
+
+12. SAMPLES
+
+12.1 ABOUT SAMPLES
+A sample is a 16 bit, 48 kHz, mono audio file.
+Each of the six tracks in a pattern can contain one sample. A sample that is imported from the +Drive to a pattern becomes part of the active pattern. Any parameter changes applied to a sample will therefore not affect the stored sample. It only affects the sample in the active pattern.
+A sample used in a pattern can be renamed or moved and still function as intended. This is due to a hash function that adds a file specific value to every file, and this value is independent of the file name or the file’s location in the data structure. However, if you delete a sample, it is not included in any patterns anymore.
+
+If you delete a sample from the +Drive, it will not be included in any projects or patterns anymore.
+
+12.2 THE +DRIVE SAMPLE LIBRARY
+The +Drive sample library is where all the samples are stored and can hold up to 1 GB of samples. You can have up to 576 samples (6 banks × 16 patterns × 6 tracks) - with a maximum combined size of 64 MB (about 11 minutes) - in the RAM of every project. A sample that is used on several tracks does not take up additional space in the RAM.
+
+12.3 ASSIGNING A SAMPLE TO A TRACK
+You can assign any of the samples in the +Drive to any of the audio tracks.
+1. Press [TRACK] + [T1–6] to select a track.
+2. Press [WAVE] to open the SAMPLE ASSIGN menu.
+
+3. Use the LEVEL/DATA knob to navigate the folder structure to the sample you want to assign. Press [BACK] to navigate up one level in the folder hierarchy if needed. Press the pad of the active track while browsing to listen to the sample currently highlighted. When not in GRID RECORDING mode, you can also press the [TRIG] keys to preview the sample chromatically. To preview a sample in a playing pattern context, press and hold the pad of the active track. The sequencer then plays the highlighted sample.
+4. Press the pad of the active track while browsing to listen to the sample currently highlighted. When not in GRID RECORDING mode, you can also preview the sample chromatically by pressing the [TRIG] keys. To preview a sample in a playing pattern context, press and hold the pad of the active track. While the pad is held, the sequencer will play the highlighted sample
+
+5. Press LEVEL/DATA to select a sample. Press [BACK] to exit the list without selecting a sample.
+
+You can now play the sample either by the sequencer or manually by pressing a [TRIG] or [T1–6] key.
+
+You can also load up to six samples at the same time.
+In the SAMPLE ASSIGN menu, highlight a folder and then press and hold LEVEL/DATA for a second. A popup appears that reads “LOAD WHOLE DIR” Press “YES” to load up to six samples from that folder to Model:Samples six tracks.
+It checks all files in the directory for a suffix of 1-6 and loads the files matching this criteria to the respective track. If no matching file is found for a track, it fills the blank tracks with the first other not-yet-loaded samples in the folder. So if you have the samples BD01, SD03, MYSAMPLE999, CHORDY and HIHAT6 in a directory, it would load T1=BD01, T2=CHORDY, T3=SD03, T4=MYSAMPLE999 and T6=HIHAT6. T5 will be blank (if it did not previously contain a sample).
+
+12.4 DELETING SAMPLES FROM THE +DRIVE LIBRARY
+You can delete samples from the +Drive from within the Model:Samples.
+1. Press [WAVE] to open the SAMPLE ASSIGN menu.
+2. Use the LEVEL/DATA knob to navigate the folder and the sample you want to remove. You can also remove a folder if it does not contain any samples.
+3. Press [FUNC] + LEVEL/DATA to initiate the delete process
+
+4. Press “YES” and then press LEVEL/DATA to delete the sample.
+
+If you load and unload many samples in a project, the RAM can become fragmented and might need to be defragmented to free up memory space. This defragmentation is done by reloading all the samples in the project. If you try to assign a sample to a track and you see a popup that reads “RELOAD ALL SAMPLES TO CONTINUE?”, it means that the sample fits in the RAM but to achieve this, you need to reload of the samples to free up memory.
+
+If you press CONTINUE a second popup appears that reads: “PLAYBACK WILL BE STOPPED”.
+
+Press CONTINUE again and the sequencer playback stops while the samples reload and the new sample is assigned to the track. Press CANCEL to abort assigning the sample to the track.
+
+12.5 RAM FOLDER
+At the bottom of the root the SAMPLE ASSIGN menu there is a folder called RAM. This folder shows a list of all the samples currently loaded into the RAM memory. The samples are not actually located in the RAM
+
+folder but the folder is there to give an overview of what is currently loaded in to RAM. However you can load samples from this folder since the files you see there are linked to the actual sample files on the +Drive.
+
+• Every sample that you assign to a track is automatically added to the RAM folder.
+• If you load a sample that is already in the RAM, it does not take up any additional space in RAM.
+• If you get a popup that reads “MEMORY FULL”, when you try to assign a sample to a track, it means that the RAM is full. You then need to unload samples from the RAM folder to fit the one you try to assign.
+
+12.5.1 UNLOADING A SAMPLE FROM THE RAM FOLDER
+You can unload samples from the RAM of the active project to free up more sample memory for the project.
+1. Press [WAVE] to open the SAMPLE ASSIGN menu.
+2. Use the LEVEL/DATA knob to navigate to the RAM folder and the sample you want to unload.
+Press [BACK] to navigate up one level in the folder hierarchy if needed.
+3. Press [FUNC] + LEVEL/DATA to initiate the unload process
+
+4. Press “YES”, and then press LEVEL/DATA to unload the sample.
+
+12.6 TRANSFERRING SAMPLES
+You should use the free Elektron Transfer software to transfer samples to and from your Model:Samples and a computer. You can download the Elektron Transfer software and the Transfer User Manual from the Support section of the Elektron website, www.elektron.se
+
+12.6.1 TRANSFERRING SAMPLES TO MODEL:SAMPLES FROM A COMPUTER
+1. Connect Model:Samples to the computer via USB.
+2. Open the Elektron Transfer software (Available on the Elektron website) on your computer.
+3. On the Transfer CONNECTIONS page, set the MIDI IN and OUT ports to your Model:Samples.
+4. In Transfer, click the EXPLORE tab to open the EXPLORE page.
+5. On the top right side, in the drop-down menu, select “Samples”.
+6. On the top left side in the drop-down menu, make sure “My Computer” is selected.
+7. Under “My Computer” navigate to the files or folders you want to transfer.
+8. Drag and drop the files or folders to your preferred location on your device. Transfer automatically converts all audio files to 16 bit, 48 kHz, mono audio files, the Model:Samples native audio format.
+To use the samples, they need to be assigned to a track in a pattern. For more information, please see “12.3 ASSIGNING A SAMPLE TO A TRACK”.
+
+12.6.2 RECEIVING SAMPLES VIA MIDI SAMPLE DUMP STANDARD (SDS)
+The Model:Samples still supports sample transfer via MIDI Sample Dump Standard (SDS) and Extended SDS. The Elektron C6 software supports this transfer protocol. You need to enable SDS Handshake to secure the transmission over fast interfaces like USB MIDI. You also have to enable the transmission of the Extended SDS header if you want the sample name to be sent to the Model:Samples.
+Samples received via SDS are placed in the INCOMING folder in the root of the +Drive.
+
+12.6.3 TRANSFERRING SAMPLES TO A COMPUTER FROM MODEL:SAMPLES
+1. Connect Model:Samples to the computer via USB.
+2. Open the Elektron Transfer software (available on the Elektron website) on your computer.
+3. On the Transfer CONNECTIONS page, set the MIDI IN and OUT ports to your Model:Samples.
+4. In Transfer, click EXPLORE to open the EXPLORE page.
+
+12. SAMPLES
+
+5. If needed, in the left drop-down menu, select “My Computer”, and in the right drop-down menu, select “Model:Samples”.
+6. On the EXPLORE page on the right side under Model:Samples, navigate to the samples you want to transfer
+7. Drag and drop the samples to your preferred folder under “My Computer”.
+
+• Make sure you have the latest version of the Elektron Transfer software installed on your computer. You can download the free Transfer software and the Transfer User Manual from the Support section of the Elektron website.
+• Make sure you set INP FROM and OUT to USB in the SETTINGS > MIDI CFG menu, to ensure the highest transfer speed. For more information, please see “11.3 MIDI” on page 39.
+• Sequencer playback stops when you transfer files to the Model:Samples.
+
+13. STARTUP MENU
+To access this menu, hold down the [FUNC] key while powering up the Model:Samples. From here you can perform a variety of tasks. To choose the different alternatives, press the corresponding [TRIG] key.
+
+13.1 EXIT
+Press the [TRIG 1] key to exit the STARTUP menu.
+
+13.2 EMPTY RESET
+To perform this operation, press the [TRIG 2] key. All patterns will be erased. The data on the +Drive remains intact.
+
+13.3 FACTORY RESET
+When performing a factory reset on the Model:Samples, it overwrites and re-initializes the active RAM project (including all pattern and global data). The +Drive project in slot 1 is overwritten and re-initialized with factory preset patterns and settings.
+If you wish to keep the active project, remember to save it to a +Drive project slot higher than 1 before you perform a factory reset. To perform a factory reset, press the [TRIG 3] key.
+
+When you are in the STARTUP menu, you also have the possibility to perform a total reformatting of the +Drive and at the same time perform a factory reset. Please keep in mind that it will empty the +Drive of all your presets and patterns and reset it to the factory content only.
+To reformat the +Drive and make a factory reset, press [PATTERN] + [TRACK] + [TRIG 3].
+
+13.4 OS UPGRADE
+Press the [TRIG 4] key to initiate the OS upgrade. Use this menu option if you for some reason cant upgrade the Model:Samples OS using the standard procedure in the UPGRADE menu. To send the OS file, use our free Elektron Transfer software. The Elektron Transfer can be downloaded from the Elektron website.
+1. Download the Model:Samples OS file from the Elektron website.
+2. Connect the Model:Samples’ MIDI IN port to the MIDI OUT port of the computer’s MIDI interface.
+3. Hold down the [FUNC] key while powering on Model:Samples. This takes you to the STARTUP menu.
+4. Press the [TRIG 4] key to enter OS UPGRADE mode.
+5. Open the Transfer application on your computer. On the Transfer CONNECTION page, click “go to the SYSEX TRANSFER page”.
+6. On the SYSEX TRANSFER page, click “OS Upgrade via device startup menu”, and then follow the onscreen instructions.
+
+When the update is done, the Model:Samples will reboot.
+
+USB MIDI transfer is not possible when upgrading the OS from the STARTUP menu.
+
+14. KEY SHORTCUTS
+You can use these key shortcuts to quickly perform certain tasks.
+
+GENERAL
+[FUNC] + [RECORD] performs a copy command. Action depends on the currently active page or mode.
+[FUNC] + [PLAY] performs a clear command. Action depends on the currently active page or mode.
+[FUNC] + [STOP] performs a paste command. Action depends on the content that was copied.
+
+TRACK/PATTERN/BANK SELECT
+[TRACK] + [T1-6] keys to select a track without triggering the tracks sample.
+[T1-6] to select a track and trigger the tracks sample.
+[PATTERN] + [TRIG 1-16] keys to select a pattern.
+[PATTERN] + [T1-6] keys to select a bank.
+
+NAMING MENU
+[FUNC] + turn LEVEL/DATA to choose a letter.
+[FUNC] + press LEVEL/DATA to toggle between upper and lower case character.
+
+SAVING AND RELOADING
+[FUNC] + [SETTINGS] temporary saves the active Pattern.
+[FUNC] + [PATTERN] temporary reloads the active Pattern.
+[FUNC] + [SETTINGS] (long press) saves Pattern to Project.
+[FUNC] + [PATTERN] (long press) reloads Pattern from Project.
+
+MENU ACCESS
+[FUNC] + [LOOP] opens the QUANTIZE menu.
+[FUNC] + [REVERSE] opens the CLICK menu.
+[FUNC] + [RETURN] opens the PAD SETUP menu.
+[FUNC] + [LFO] opens the LFO SETUP menu.
+[FUNC] + [TRACK] opens the TRACK SETUP menu.
+[FUNC] + [WAVE] opens the SWING ALL menu.
+[FUNC] + [RETRIG] opens the RETRIG SETUP menu.
+[FUNC] + [PAGE] opens the pattern/track SCALE menu.
+
+SEQUENCER SETTINGS
+[FUNC] + [TEMPO] to tap tempo.
+[TRACK] + turn LEVEL/DATA to move all trigs a whole step, left or right (when in GRID RECORDING mode).
+[TRIG] key (hold) + [RETRIG], opens the TRIG REPEAT menu and turns retrig on and sets the retrig RATE for the trig (when in GRID RECORDING mode).
+[TRIG] key (hold), and then turn SWING, opens the TRIG NUDGE menu and sets the micro timing for the trig (when in GRID RECORDING mode).
+[FUNC] + [REVERSE] (long press) toggles Click on/off.
+
+SEQUENCER RECORDING
+[RECORD] + [PLAY] starts LIVE RECORDING.
+[RECORD] + [PLAY twice] toggles quantized LIVE RECORDING on/off.
+[TRIG] + [PLAY] to remove the parameter locks in the TRIG NOTE menu on a trig in GRID RECORDING mode.
+
+MUTES
+[FUNC] + [T1-6] keys mutes/unmutes the sequencer trigs on the tracks.
+
+FILL MODE
+Press and hold [PAGE] to activate FILL mode for as long as [PAGE] is held.
+Press [TRACK] + [PAGE] to latch FILL mode. Press [TRACK] + [PAGE] again to unlatch FILL mode.
+
+COPY/PASTE/CLEAR
+SOUNDS
+[TRACK] + [RECORD] to copy the active track’s Sound.
+[TRACK] + [STOP] to paste the copied Sound to the active track.
+[TRACK] + [PLAY] to clear the active track’s Sound.
+
+PATTERNS
+[FUNC] + [RECORD] to copy the current pattern’s sequencer data (when not in GRID RECORDING mode).
+[FUNC] + [STOP] to paste the copied pattern’s sequencer data to the current pattern (when not in GRID RECORDING mode).
+[FUNC] + [PLAY] to clear the current pattern’s sequencer data (when not in GRID RECORDING mode).
+Press and hold [PATTERN] + [TRIG] and then press [RECORD] to copy the selected pattern.
+Press and hold [PATTERN] + [TRIG] and then press [STOP] to paste the copied pattern to the selected pattern.
+Press and hold [PATTERN] + [TRIG] and then press [PLAY] to clear the selected pattern.
+
+TRACKS
+[FUNC] + [RECORD] to copy active track’s sequencer data (when in GRID RECORDING mode).
+[FUNC] + [STOP] to paste the copied track’s sequencer data to the active track (when in GRID RECORDING mode).
+[FUNC] + [PLAY] to clear the active track’s sequencer data (when in GRID RECORDING mode).
+
+PAGES
+[PAGE] + [RECORD] (in GRID RECORDING mode) to copy active page’s sequencer data (when in GRID RECORDING mode).
+[PAGE] + [STOP] to paste the copied page’s sequencer data to the active page (when in GRID RECORDING mode).
+[PAGE] + [PLAY] to clear the active page’s sequencer data (when in GRID RECORDING mode).
+
+TRIGS
+Press and hold one or several [TRIG] keys and then press [RECORD] to copy the selected trig(s) (when in GRID RECORDING mode).
+Press and hold a [TRIG] key and then press [STOP] to paste the selected trig(s). When pasting several trigs, the trigs are placed in relation to the selected target trig (when in GRID RECORDING mode).
+Press and hold one or several [TRIG] keys and then press [PLAY] to clear the selected trig(s) note trigs (when in GRID RECORDING mode).
+To clear a specific parameter lock on a trig, press and hold a [TRIG] key, turn the TRACK PARAMETER knob that controls the parameter with the parameter lock, and then and press [PLAY] (when in GRID RECORDING mode).
+
+APPENDIX A: MIDI SPECIFICATIONS
+
+APPENDIX A: MIDI SPECIFICATIONS
+This appendix lists the specifications of the Control Change (CC) messages for the Model:Samples.
+
+A.1 TRACK PARAMETERS A.3 LFO PARAMETERS TRACK PARAMETERS LFO PARAMETERS Parameter CC MSB Parameter CC MSB Note 3 Speed 102 Mute 94 Multiplier 103 Track level 95 Fade In/Out 104 Pan 10 Destination 105 Pitch 16 Waveform 106 Decay Time 80 Start Phase 107 Sample Start 19 Reset 108 Sample Length 20 Depth 109 (LSB: 110) Cutoff 74 Resonance 71 Delay Send 12 A.4 FX PARAMETERS Reverb Send 13 FX PARAMETERS Volume + Dist 7 Parameter CC MSB Swing 15 Delay Time 85 Chance 14 Delay Feedback 86 Reverb Size 87 Reverb Tone 88 A.2 PLAYBACK PARAMETERS
+PLAYBACK PARAMETERS
+Parameter CC MSB
+Loop 17
+Reverse 18
+
+APPENDIX B: MODULATION DESTINATIONS
+
+APPENDIX B: MODULATION DESTINATIONS
+The following are the modulation destinations for the LFO and velocity:
+
+LFO VELOCITY
+
+• Pitch • Pitch • Fine Tune • Fine Tune • Decay • Decay • Start • Start • Length • Length • Frequency • Frequency • Resonance • Resonance • Delay Send • Delay Send • Reverb Send • Reverb Send • Distortion • Distortion • Pan • Pan • Loop • Loop • Flip • Flip • LFO Speed • LFO Mult • LFO Fade • LFO Wave • LFO Start Phase • LFO Mode • LFO Depth
