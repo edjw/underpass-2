@@ -25,17 +25,24 @@ createIcons({
   icons: { AudioLines, Circle, Square, X, Scale, Github },
 });
 
+// Fail fast if the HTML is missing expected elements
+function requireElement<T extends Element>(selector: string): T {
+  const el = document.querySelector<T>(selector);
+  if (!el) throw new Error(`Missing required element: ${selector}`);
+  return el;
+}
+
 let audioContext: AudioContext | null = null;
 
-const enableAudioButton = document.querySelector<HTMLButtonElement>("button#enableAudio")!;
-const mainControlsSection = document.querySelector<HTMLElement>("section#mainControls")!;
+const enableAudioButton = requireElement<HTMLButtonElement>("button#enableAudio");
+const mainControlsSection = requireElement<HTMLElement>("section#mainControls");
 
 enableAudioButton.onclick = function () {
   navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
     void stream; // permission grant only — stream is discarded
     enableAudioButton.style.display = "none";
     mainControlsSection.classList.remove("hidden");
-    navigator.mediaDevices.ondevicechange!(new Event("devicechange"));
+    navigator.mediaDevices.ondevicechange?.(new Event("devicechange"));
     navigator.requestMIDIAccess({ sysex: true }).then(midiAccessSuccess).catch(function (err: DOMException) {
       if (err.name === "SecurityError" && err.message.includes("add-on")) {
         alert("Firefox requires a site permission add-on for Web MIDI SysEx. Please use Chrome, Edge, Brave, or install the required Firefox add-on.");
@@ -52,7 +59,7 @@ enableAudioButton.onclick = function () {
 
 // Audio devices
 //
-const audioInputSelect = document.querySelector<HTMLSelectElement>("select#audioInput")!;
+const audioInputSelect = requireElement<HTMLSelectElement>("select#audioInput");
 
 function audioInputChanged() {
   const audioSource = audioInputSelect.value;
@@ -128,8 +135,8 @@ let midiAccess: MIDIAccess | null = null;
 let midiFromDevice: MIDIInput | null = null;
 let midiToDevice: MIDIOutput | null = null;
 
-const midiFromDeviceSelect = document.querySelector<HTMLSelectElement>("select#midiFromDevice")!;
-const midiToDeviceSelect = document.querySelector<HTMLSelectElement>("select#midiToDevice")!;
+const midiFromDeviceSelect = requireElement<HTMLSelectElement>("select#midiFromDevice");
+const midiToDeviceSelect = requireElement<HTMLSelectElement>("select#midiToDevice");
 const midiSelectors = [midiFromDeviceSelect, midiToDeviceSelect];
 
 
@@ -239,8 +246,7 @@ function startMidiTimeout() {
 function abortMidiTransfer(reason: string) {
   clearMidiTimeout();
   if (recCurStatusNode) recCurStatusNode.textContent = reason;
-  recButton.disabled = false;
-  stopButton.disabled = true;
+  resetRecordButton();
   midiSampleDumpPacketsSent = midiSampleDumpPacketsTotal; // Stop sending
 }
 
@@ -264,20 +270,21 @@ function midiSendSampleName(deviceID: number, sampleNumber: number, name: string
   
   payload[8 + len] = 0xf7;
   
-  midiToDevice!.send(payload);
+  if (!midiToDevice) return;
+  midiToDevice.send(payload);
   console.log("Sent Sample Name SysEx:", name);
 }
 
 function finishMidiTransfer() {
   clearMidiTimeout();
-  const sampleName = sampleNameInput.value.trim() || `SAMP-${sampleIDInput.value.padStart(2, '0')}`;
-  midiSendSampleName(currentDeviceID, parseInt(sampleIDInput.value), sampleName);
-  
+  const sampleID = Math.max(0, Math.min(16383, parseInt(sampleIDInput.value) || 0));
+  const sampleName = sampleNameInput.value.trim() || `SAMP-${String(sampleID).padStart(2, '0')}`;
+  midiSendSampleName(currentDeviceID, sampleID, sampleName);
+
   console.log("Data transfer complete");
   if (recCurStatusNode) recCurStatusNode.textContent = "Uploaded";
-  recButton.disabled = false;
-  stopButton.disabled = true;
-  sampleIDInput.value = String(parseInt(sampleIDInput.value) + 1);
+  resetRecordButton();
+  sampleIDInput.value = String(sampleID + 1);
 }
 
 function midiInputMessage(event: MIDIMessageEvent) {
@@ -297,7 +304,8 @@ function midiInputMessage(event: MIDIMessageEvent) {
     recorderShowMidiSDProgress(progress);
 
     if (midiSampleDumpPacketsSent < midiSampleDumpPacketsTotal) {
-      midiToDevice!.send(midiSampleDumpPackets[midiSampleDumpPacketsSent - 1]);
+      if (!midiToDevice) { abortMidiTransfer("Error: MIDI output lost"); return; }
+      midiToDevice.send(midiSampleDumpPackets[midiSampleDumpPacketsSent - 1]);
       midiSampleDumpPacketsSent++;
       startMidiTimeout();
     } else if (recCurStatusNode && recCurStatusNode.textContent !== "Uploaded") {
@@ -311,10 +319,11 @@ function midiInputMessage(event: MIDIMessageEvent) {
       return;
     }
     console.log("Received NAK, resending packet...");
+    if (!midiToDevice) { abortMidiTransfer("Error: MIDI output lost"); return; }
     if (midiSampleDumpPacketsSent === 1 && midiSampleDumpHeader) {
-      midiToDevice!.send(midiSampleDumpHeader);
+      midiToDevice.send(midiSampleDumpHeader);
     } else if (midiSampleDumpPacketsSent > 1) {
-      midiToDevice!.send(midiSampleDumpPackets[midiSampleDumpPacketsSent - 2]);
+      midiToDevice.send(midiSampleDumpPackets[midiSampleDumpPacketsSent - 2]);
     }
     startMidiTimeout();
   } else if (d[3] === 0x7d) { // CANCEL
@@ -338,7 +347,8 @@ function midiSendSampleDump(sampleNumber: number, sampleRate: number, samples: F
   midiSampleDumpPacketsSent = 1;
   midiSampleDumpPacketsAcknowledged = 0;
   currentDeviceID = 0;
-  midiToDevice!.send(header);
+  if (!midiToDevice) return;
+  midiToDevice.send(header);
   startMidiTimeout();
 }
 
@@ -429,7 +439,7 @@ function midiMessageToString(p: Uint8Array): string {
 // Level meter
 //
 
-const levelMeterSpan = document.querySelector<HTMLSpanElement>("span#levelMeterInner")!;
+const levelMeterSpan = requireElement<HTMLSpanElement>("span#levelMeterInner");
 
 function levelMeterShow(db: number) {
   const perc = 100 * ((db + 92) / (92 + 20));
@@ -440,7 +450,7 @@ function levelMeterShow(db: number) {
 // Audio recorder
 //
 
-const recToggleButton = document.querySelector<HTMLButtonElement>("button#recordToggle")!;
+const recToggleButton = requireElement<HTMLButtonElement>("button#recordToggle");
 let recIsRecording = false;
 
 recToggleButton.onclick = function () {
@@ -451,11 +461,11 @@ recToggleButton.onclick = function () {
   }
 };
 
-const sampleIDInput = document.querySelector<HTMLInputElement>("input#sampleID")!;
-const sampleNameInput = document.querySelector<HTMLInputElement>("input#sampleName")!;
+const sampleIDInput = requireElement<HTMLInputElement>("input#sampleID");
+const sampleNameInput = requireElement<HTMLInputElement>("input#sampleName");
 
-const recTable = document.querySelector<HTMLTableElement>("table#recordings")!;
-const recTrPrototype = document.querySelector<HTMLTemplateElement>("#recordingPrototype")!;
+const recTable = requireElement<HTMLTableElement>("table#recordings");
+const recTrPrototype = requireElement<HTMLTemplateElement>("#recordingPrototype");
 
 let recCurNode: HTMLTableRowElement | null = null;
 let recCurFileNameNode: Element | null = null;
@@ -483,14 +493,16 @@ function recorderInit(stream: MediaStream) {
   recSourceNode = audioContext.createMediaStreamSource(stream);
 
   audioContext.audioWorklet.addModule(processorsUrl).then(() => {
-    recRmsDbNode = new AudioWorkletNode(audioContext!, "rms-db-processor");
+    if (!audioContext || !recSourceNode) return; // shutdown happened during module load
+
+    recRmsDbNode = new AudioWorkletNode(audioContext, "rms-db-processor");
     recRmsDbNode.port.onmessage = (event: MessageEvent<number>) => {
       levelMeterShow(event.data);
     };
-    recSourceNode!.connect(recRmsDbNode);
-    recRmsDbNode.connect(audioContext!.destination);
+    recSourceNode.connect(recRmsDbNode);
+    recRmsDbNode.connect(audioContext.destination);
 
-    recSavingNode = new AudioWorkletNode(audioContext!, "saving-processor");
+    recSavingNode = new AudioWorkletNode(audioContext, "saving-processor");
     recSavingNode.port.onmessage = (event: MessageEvent<Float32Array[]>) => {
       const channels = event.data;
       for (let i = 0; i < channels.length; i++) {
@@ -527,6 +539,18 @@ function createFileAudioIcon(): SVGSVGElement {
   return svg;
 }
 
+function resetRecordButton() {
+  recIsRecording = false;
+  recToggleButton.querySelector("span")!.textContent = "Record";
+  const currentIcon = recToggleButton.querySelector("svg")!;
+  const newIcon = document.createElement("i");
+  newIcon.setAttribute("data-lucide", "circle");
+  newIcon.className = "size-5 text-accent";
+  currentIcon.replaceWith(newIcon);
+  createIcons({ icons: { Circle }, nameAttr: "data-lucide", root: recToggleButton });
+  recToggleButton.classList.remove("!bg-accent");
+}
+
 function recorderStart() {
   if (!audioContext) {
     alert("Select an audio input first");
@@ -558,8 +582,14 @@ function recorderStart() {
   recorderShowDuration(0);
   recBuffers = [[], []];
   recLength = 0;
-  recSourceNode!.connect(recSavingNode!);
-  recSavingNode!.connect(audioContext!.destination);
+
+  if (!recSourceNode || !recSavingNode) {
+    alert("Audio pipeline is still loading. Try again in a moment.");
+    return;
+  }
+
+  recSourceNode.connect(recSavingNode);
+  recSavingNode.connect(audioContext.destination);
 
   timeout = setTimeout(() => {
     recorderStop();
@@ -583,51 +613,52 @@ function recorderStop() {
     timeout = null;
   }
 
-  recSourceNode!.disconnect(recSavingNode!);
-  recSavingNode!.disconnect(audioContext!.destination);
+  if (recSourceNode && recSavingNode) {
+    recSourceNode.disconnect(recSavingNode);
+    if (audioContext) recSavingNode.disconnect(audioContext.destination);
+  }
 
-  // Reset toggle button to show "Record" state
-  recIsRecording = false;
-  recToggleButton.querySelector("span")!.textContent = "Record";
-  const recIcon = recToggleButton.querySelector("svg")!;
-  const recI = document.createElement("i");
-  recI.setAttribute("data-lucide", "circle");
-  recI.className = "size-5 text-accent";
-  recIcon.replaceWith(recI);
-  createIcons({ icons: { Circle }, nameAttr: "data-lucide", root: recToggleButton });
-  recToggleButton.classList.remove("!bg-accent");
+  resetRecordButton();
   const buffers = numChannels === 2
     ? [mergeBuffers(recBuffers[0], recLength), mergeBuffers(recBuffers[1], recLength)]
     : [mergeBuffers(recBuffers[0], recLength)];
   const monosummed = numChannels === 2 ? monosum(buffers[0], buffers[1]) : buffers[0];
   console.log("Captured " + monosummed.length + " samples");
 
-  if (midiToDevice) {
-    recCurStatusNode!.textContent = "Uploading...";
-    midiSendSampleDump(parseInt(sampleIDInput.value), audioContext!.sampleRate, monosummed);
+  if (monosummed.length === 0) {
+    if (recCurStatusNode) recCurStatusNode.textContent = "Empty recording";
+    return;
+  }
+
+  if (midiToDevice && audioContext) {
+    const sampleID = Math.max(0, Math.min(16383, parseInt(sampleIDInput.value) || 0));
+    if (recCurStatusNode) recCurStatusNode.textContent = "Uploading...";
+    midiSendSampleDump(sampleID, audioContext.sampleRate, monosummed);
   } else {
-    recCurStatusNode!.textContent = "No MIDI output";
+    if (recCurStatusNode) recCurStatusNode.textContent = midiToDevice ? "No audio context" : "No MIDI output";
   }
 }
 
 
 function recorderShowDuration(numSamples: number) {
-  const duration = numSamples / audioContext!.sampleRate;
+  if (!audioContext) return;
+  const duration = numSamples / audioContext.sampleRate;
   const minutes = Math.floor(duration / 60);
   const seconds = Math.floor(duration - 60 * minutes);
   const millis = Math.floor(1000 * (duration - 60 * minutes - seconds));
-  recCurDurationNode!.textContent = str2(minutes) + ":" + str2(seconds) + "." + str3(millis);
+  if (recCurDurationNode) recCurDurationNode.textContent = str2(minutes) + ":" + str2(seconds) + "." + str3(millis);
 }
 
 
 function recorderShowMidiSDProgress(value: number) {
   if (value > 1) value = 1;
 
-  recCurProgressInnerNode!.style.width = (100 * value) + "%";
-  recCurProgressInnerNode!.textContent = Math.floor(100 * value) + "%";
+  if (!recCurProgressInnerNode) return;
+  recCurProgressInnerNode.style.width = (100 * value) + "%";
+  recCurProgressInnerNode.textContent = Math.floor(100 * value) + "%";
 
   if (Math.floor(10000 * value) === 10000) {
-    recCurProgressInnerNode!.classList.replace("bg-accent", "bg-neutral-500");
+    recCurProgressInnerNode.classList.replace("bg-accent", "bg-neutral-500");
   }
 }
 
@@ -667,9 +698,9 @@ function str3(n: number): string {
 // Legal notice
 //
 
-const legalButton = document.querySelector<HTMLButtonElement>("button#legalButton")!;
-const legalNotice = document.querySelector<HTMLDivElement>("div#legalNotice")!;
-const legalCloseButton = document.querySelector<HTMLButtonElement>("button#legalClose")!;
+const legalButton = requireElement<HTMLButtonElement>("button#legalButton");
+const legalNotice = requireElement<HTMLDivElement>("div#legalNotice");
+const legalCloseButton = requireElement<HTMLButtonElement>("button#legalClose");
 
 legalButton.onclick = function () {
   legalNotice.classList.toggle("hidden");
