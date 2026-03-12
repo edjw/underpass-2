@@ -3,7 +3,8 @@
     "allow": [
       "WebFetch(domain:www.elektronauts.com)",
       "Bash(bunx tsc:*)",
-      "WebFetch(domain:www.elektron.se)"
+      "WebFetch(domain:www.elektron.se)",
+      "Bash(bunx netlify:*)"
     ]
   }
 }
