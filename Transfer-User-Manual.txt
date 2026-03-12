@@ -1,0 +1,161 @@
+Elektron Transfer User Manual (OS 1.10)
+
+1. INTRODUCTION
+
+SOUNDS/
+OS FILES PROJECTS SAMPLES
+PRESETS
+Monomachine X* Machinedrum X* * OS files can be transferred to the device using the SYSEX TRANSFER page.
+
+1.4 SYSTEM REQUIREMENTS
+1.4.1 COMPUTER OPERATING SYSTEM
+Transfer supports the following computer operating systems.
+• PC with Windows 7 SP1 or higher.
+• 64-bit Apple computer with macOS 10.12 or higher. 32-bit architectures are not supported.
+
+1.4.2 COMPUTER HARDWARE REQUIREMENTS
+Elektron recommends at least the following hardware specifications.
+• 4 GB of RAM.
+• Intel Core i5 CPU.
+
+1.5 INSTALLING TRANSFER
+1.5.1 WINDOWS
+1. Extract the downloaded ZIP file.
+2. Double-click the file called Elektron Transfer Installer.msi to run the installer software for Transfer.
+3. Follow the instructions in the installation program
+
+1.5.2 MAC OS X
+1. Double-click the downloaded DMG file from Finder to mount it.
+2. Drag and drop the Transfer.app file from the DMG into your Applications folder.
+3. Unmount the DMG file again by ejecting it via Finder (or via your Desktop).
+
+1.6 UNINSTALLING TRANSFER
+1.6.1 WINDOWS
+Use the Uninstall program option in Control Panel > Programs > Programs and Features menu to uninstall Transfer. You may need to restart your computer after the uninstallation for all installed files to disappear.
+
+1.6.2 MAC OS
+On macOS, just drag and drop the Transfer.app file from your Applications folder onto the Trashcan to uninstall the application.
+
+2. USING TRANSFER
+
+2. USING TRANSFER
+
+2.1 CONNECTION PAGE
+2.1.1 CONNECTING TRANSFER TO YOUR ELEKTRON DEVICE
+1. Connect your Elektron device to your computer via USB and switch it on.
+2. Start the Elektron Transfer application and select the USB MIDI port(s) for your Elektron device on the Transfer CONNECTION page.
+3. Click “CONNECT” to create a device connection.
+
+Once you have connected a device it will show up under AVAILABLE DEVICES. If you have connected multiple Elektron devices you can switch between them here.
+
+If you use macOS, Transfer might ask for permission to browse the desktop the first time you start Transfer. You should allow this, and If you want to revisit this setting later, it can be found in the macOS System Preferences.
+
+2.1.2 USING THE SYSEX TRANSFER PAGE
+If you have problems detecting or connecting your device please make sure you have the latest OS installed on your device. You can use Transfer to update your device OS even if Transfer does not detect your device. Click the link in the text on the CONNECTION page that reads “go to the SYSEX TRANSFER page”.
+Follow the instructions on the SYSEX TRANSFER page to upgrade your device.
+
+You can also use the SYSEX TRANSFER page to upgrade your device OS when you are in the EARLY STARTUP menu on your device. On the SYSEX TRANSFER page, click “OS Upgrade via device startup menu” and then follow the instructions. Make sure you select your MIDI interface instead of your Elektron device in the drop down menu.
+
+2. USING TRANSFER
+
+2.2 DROP PAGE
+
+2. USING TRANSFER
+
+Here you can drop device OS files, sample files, folders or zip files containing samples, directly onto the drop zone to transfer the files to your device. At the bottom of the application window is a list of currently active transfers. You may drop additional files to the drop zone while other transfers are ongoing. The files are added the job queue automatically.
+
+SAMPLES
+Various sample formats are supported (.wav, .aiff, .mp3, and more). The exact list of supported file formats may depend on your computer OS and its built-in codecs.
+When dropping complete directory structures onto the Drop zone, Transfer creates the corresponding directory structure on the device, even if you drop zip files. When you transfer samples to the device, Transfer creates a target folder with the name /transfers-YYMMDD (adding the current date to the folder name).
+The files are converted and re-sampled automatically using high-quality algorithms if they are not already in the native format supported by your device (typically 16bit/48kHz, mono). Files that were previously backed up by the Transfer application itself are transferred in a bit-accurate manner, preserving compatibility with your device projects.
+
+2.2.1 TRANSFERRING SAMPLES, SOUNDS/PRESETS, AND PROJECTS
+1. Connect the Elektron device to the computer via USB.
+2. Open the Transfer application on your computer.
+3. On the Transfer CONNECTION page, set the MIDI IN and MIDI OUT ports to your Elektron device, and then click ”CONNECT”.
+4. On the Transfer DROP page, drag and drop the files you want to transfer. The samples/sounds/presets/projects will automatically be transferred to the Elektron device.
+
+2.2.2 TRANSFERRING OS FILES AND UPGRADING DEVICE OS (STANDARD MODE)
+This is the standard mode of transferring device OS files to your Elektron device is to use the Transfer DROP page and in this way upgrade your device OS.
+1. Connect the Elektron device to the computer via USB.
+2. Open the Transfer application on your computer.
+3. On the Transfer CONNECTION page, set the MIDI IN and MIDI OUT ports to your Elektron device, and then click ”CONNECT” (or just click “CONNECT” next to your device under PREVIOUSLY USED if it had been connected before).
+4. On the Transfer DROP page, drag and drop the OS file. The OS file is then automatically transferred to the Elektron device and the OS update initiates.
+5. On your device. Press [YES] to confirm the OS update.
+
+We recommend that you select USB MIDI mode on your Elektron device. You find this setting in GLOBAL SETTINGS > SYSTEM > USB CONFIG, or CONFIG MENU > DEVICE > USB MODE depending on your device.
+
+2.3 EXPLORE PAGE
+On the EXPLORE page, you have a two-column explorer view with the Elektron device's contents on one side and the computer contents on the other side (or with the device’s content on both sides). Here you can do easy drag and drop transfers of files and directories from your computer to your device, or the other way around. You can also preview the samples you have on your computer here or rearrange the content on your device.
+
+2. USING TRANSFER
+
+2.3.1 BACKING UP PROJECTS, SOUNDS/PRESETS, AND SAMPLES TO A COMPUTER
+You can backup up your projects, sounds/presets, and samples from your Elektron device to a computer. Here is the general procedure for how to back up your device:
+1. Connect the Elektron device to the computer via USB.
+2. Open the Transfer application on your computer, and then select the USB MIDI port(s) for your device on the CONNECTION page, and then click “CONNECT” (or just click “CONNECT” next to your device under PREVIOUSLY USED if it had been connected before).
+3. In Transfer, click the EXPLORE tab to open the EXPLORE page.
+4. On the EXPLORE page top left side in the drop down menu, make sure “MY COMPUTER” is selected.
+5. On the top right side, in the drop down menu, select the type of file you want to transfer.
+6. In the window on the right, navigate to the files or folders you want to transfer
+7. Drag and drop the files or folders to your preferred folder under “MY COMPUTER”.
+
+For a more specific description of how to perform a back up from your device, please see your device’s User Guide.
+
+2.3.2 TRANSFERRING FILES TO AN ELEKTRON DEVICE
+You can use the EXPLORE page to transfer files from a computer to your Elektron device. Different devices supports different file types. For more information, please see “1.3 SUPPORTED FILE TYPES FOR EACH ELEKTRON DEVICE” on page 4.
+1. Connect the Elektron device to the computer via USB.
+2. Open the Transfer application on your computer and then select the USB MIDI port(s) for your device on the Transfer CONNECTION page, and then click “CONNECT” (or just click “CONNECT” next to your device under PREVIOUSLY USED if it had been connected before).
+3. In Transfer, click the EXPLORE tab to open the EXPLORE page.
+4. On the EXPLORE page top left side in the drop down menu, make sure “MY COMPUTER” is selected.
+
+2. USING TRANSFER
+
+5. Under “MY COMPUTER”, navigate to the files or folders you want to transfer.
+6. Drag and drop the files or folders to your preferred location on your device on right side.
+7. Depending on what file type you send you might see a number of pop-up windows asking you to decide what files you want to send and how you want them to be organized.
+
+2.3.3 REORGANIZING FILES ON THE ELEKTRON DEVICE
+You can also reorganize files on your Elektron device.
+1. Connect the Elektron device to the computer via USB.
+2. Open the Transfer application on your computer, and then select the USB MIDI port(s) for your device on the CONNECTION page, and then click “CONNECT”.
+3. In Transfer, click the EXPLORE tab to open the EXPLORE page.
+4. On the EXPLORE page on top the left side in the drop down menu, select your Elektron device (e.g.
+Digitakt or Analog Rytm etc.),
+5. On the EXPLORE page on top the right side, select the type of file you want to organize.
+6. Navigate to the files or folders you want to organize
+7. Drag and drop the files or folders to your preferred folders.
+
+• Project files contains project data, and samples (if applicable).
+• Sound/Preset files contains, Sound/Preset data, and samples (if applicable).
+• You can not see or access the Elektron device’s FACTORY folder in Transfer.
+• When you select an audio file in the “MY COMPUTER”-side, there is a preview pane that allows you to preview the audio file using the default system audio interface. It also shows a short file info summary.
+• Samples that are transferred from your Elektron device to your computer are stored in .wav format with bit-accuracy such that they can be transferred back to your device again with full project compatibility preserved. Note you should keep the .wav files unaltered on the computer if you want to guarantee that they are kept compatible with your device projects. Should you edit the files, they end up with a different hash sum, which in turn means that the Elektron device will no longer be able to load them into your projects. You may, however, rename or move files both on the computer and on the device without losing project compatibility.
+
+2.3.4 MAIN CONTROLS
+There are three buttons available for each of the two columns.
+• UP Navigates up one level in the folder hierarchy.
+• CREATE FOLDER Creates a folder in the current directory.
+• REFRESH Updates the files and folders to the current state.
+
+2.3.5 RIGHT-CLICK MENU
+If you right-click on a file or folder in the main windows on the EXPLORE page, it brings up a contextual menu with the following options:
+• RENAME Lets you rename the file or folder. (Available if you have selected a folder or sample file.)
+• DELETE Removes the file or folder. (Available if you have selected a folder or sample file.)
+• CREATE FOLDER Creates a folder in the current directory. (Available if you have selected a folder or sample file.)
+• REFRESH Updates the file or folder to the current state.
+• REVEAL IN EXPLORER/FINDER Opens the file’s or folder’s location in Explorer/Finder. (Available if you have selected a file that resides on your computer.)
+• SAVE TO COMPUTER Saves the files or folders to the computer. (Available if you have selected a project or sound/preset file.)
+• LOAD INTO SLOT Loads the file to the selected slot. (Available if you have selected a project or sound/preset file.)
+• COPY Copies the selected file. (Available if you have selected a project or sound/preset file.)
+
+• CUT Removes the file or folder. (Available if you have selected a project or sound/preset file.)
+• PASTE Pastes the previously copied file to the selected location. (Available if you have selected a project or sound/preset file.)
+
+2.3.6 RIGHT-CLICK MENU IN THE TRANSFERS PANE
+If you right-click on a file in the TRANSFERS pane, it brings up a menu with the following options
+• REMOVE Removes the file from the TRANSFERS window.
+• CANCEL Cancels the ongoing file transfer.
+• RETRY Retries to send a file that has been stopped or canceled.
+• RETRY RENAME This option is available if the file you try to transfer a file with the same name as a file already in the destination. It lets you rename the file you are sending so it can be transferred.
+• AUTO-SCROLL With this option selected, the file currently in transfer is visible in the TRANSFERS pane.
