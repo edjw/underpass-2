@@ -1,6 +1,6 @@
 # underpass-2
 
-A sampling companion for [Elektron Model:Samples™](https://www.elektron.se/products/modelsamples/) devices.
+A sampling companion for [Elektron Model:Samples™](https://www.elektron.se/products/modelsamples/) devices. Try it at [underpass-2.netlify.app](https://underpass-2.netlify.app/).
 
 > **Fork notice:** This project is a fork of [underpass](https://github.com/mlnoga/underpass) by Markus Noga, which has been dormant since 2021. Full commit history from the original is preserved. Licensed under [GPL v3](./LICENSE).
 
