@@ -502,6 +502,7 @@ let recLength = 0;
 const numChannels = 2;
 let timeout: ReturnType<typeof setTimeout> | null = null;
 const maxTime = 10;
+let recGateOpened = false;
 
 
 window.addEventListener("pagehide", recorderShutdown);
@@ -522,8 +523,17 @@ function recorderInit(stream: MediaStream) {
     recSourceNode.connect(recRmsDbNode);
     recRmsDbNode.connect(audioContext.destination);
 
-    recSavingNode = new AudioWorkletNode(audioContext, "saving-processor");
+    recSavingNode = new AudioWorkletNode(audioContext, "gated-saving-processor");
     recSavingNode.port.onmessage = (event: MessageEvent<Float32Array[]>) => {
+      // First chunk after gate opens — start the max-time countdown
+      if (!recGateOpened && recIsRecording) {
+        recGateOpened = true;
+        if (recCurStatusNode) recCurStatusNode.textContent = "";
+        timeout = setTimeout(() => {
+          recorderStop();
+        }, maxTime * 1000);
+      }
+
       const channels = event.data;
       for (let i = 0; i < channels.length; i++) {
         const channel = channels[i];
@@ -602,18 +612,17 @@ function recorderStart() {
   recorderShowDuration(0);
   recBuffers = [[], []];
   recLength = 0;
+  recGateOpened = false;
 
   if (!recSourceNode || !recSavingNode) {
     alert("Audio pipeline is still loading. Try again in a moment.");
     return;
   }
 
+  recSavingNode.port.postMessage({ type: "reset" });
   recSourceNode.connect(recSavingNode);
   recSavingNode.connect(audioContext.destination);
-
-  timeout = setTimeout(() => {
-    recorderStop();
-  }, maxTime * 1000);
+  if (recCurStatusNode) recCurStatusNode.textContent = "Waiting...";
 
   // Update toggle button to show "Stop" state
   recIsRecording = true;
