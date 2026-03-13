@@ -18,7 +18,7 @@
     --color-label: #7a7670;
     --color-label-dark: #5a5650;
 
-    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+    --font-mono: ui-monospace, monospace;
 }
 
 button:not(:disabled) {
