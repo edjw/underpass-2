@@ -167,6 +167,80 @@
             <div class="flex-1"></div>
 
             <div
+                id="helpPanel"
+                class="mt-4 hidden rounded-xl bg-chassis-dark p-4 text-xs text-label-dark"
+            >
+                <div class="flex justify-between">
+                    <div class="space-y-3">
+                        <div>
+                            <p class="font-medium text-surface mb-1">What is this?</p>
+                            <p>Underpass 2 turns your Model:Samples into a full sampler. Record from any audio source on your computer and transfer samples to your device over USB &mdash; no Elektron Transfer app needed.</p>
+                        </div>
+
+                        <div>
+                            <p class="font-medium text-surface mb-1">Requirements</p>
+                            <ul class="list-disc list-inside space-y-0.5">
+                                <li>Model:Samples connected via USB</li>
+                                <li>Chrome, Edge, Brave, or Firefox (v108+). Safari/iOS not supported (no WebMIDI)</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="font-medium text-surface mb-1">How to use</p>
+                            <ol class="list-decimal list-inside space-y-0.5">
+                                <li>Connect your Model:Samples via USB and power it on</li>
+                                <li>Click &ldquo;Enable Audio&rdquo; and grant microphone/MIDI permissions</li>
+                                <li>Select your <strong>Audio In</strong> &mdash; choose any line input to sample external audio, or &ldquo;Model:Samples&rdquo; to resample your device&rsquo;s output</li>
+                                <li>Select <strong>MIDI In</strong> and <strong>MIDI Out</strong> &mdash; these should auto-select if your device is connected</li>
+                                <li>Set a <strong>Sample ID</strong> (0&ndash;16383) and optionally a <strong>Sample Name</strong></li>
+                                <li>Watch the <strong>Input Level</strong> meter to confirm signal</li>
+                                <li>Hit <strong>Record</strong> (max 10 seconds) then <strong>Stop</strong></li>
+                                <li>The sample transfers automatically via MIDI &mdash; watch the progress bar</li>
+                            </ol>
+                        </div>
+
+                        <div>
+                            <p class="font-medium text-surface mb-1">Finding your samples on the device</p>
+                            <p>Transferred samples land in the <strong>INCOMING</strong> folder on the +Drive. To use one:</p>
+                            <ol class="list-decimal list-inside space-y-0.5 mt-1">
+                                <li>Press <strong>[WAVE]</strong> to open the Sample Assign menu</li>
+                                <li>Navigate to the <strong>INCOMING</strong> folder</li>
+                                <li>Select your sample and press <strong>LEVEL/DATA</strong> to assign it to the active track</li>
+                            </ol>
+                        </div>
+
+                        <div>
+                            <p class="font-medium text-surface mb-1">Audio setup options</p>
+                            <p>There are two ways to get audio into Underpass 2:</p>
+                            <p class="mt-1"><em>USB audio (simplest)</em> &mdash; The Model:Samples streams audio over USB. Select &ldquo;Model:Samples&rdquo; as your <strong>Audio In</strong>. No extra hardware or cables needed.</p>
+                            <p class="mt-1"><em>Audio interface</em> &mdash; Route the device&rsquo;s <strong>Main Out</strong> or <strong>Headphones</strong> into your audio interface&rsquo;s inputs. Select your interface as the <strong>Audio In</strong>. This is useful if you want to sample external sources alongside the device, or if your setup already runs through an interface.</p>
+                        </div>
+
+                        <div>
+                            <p class="font-medium text-surface mb-1">Resampling your device</p>
+                            <p>To capture what&rsquo;s playing on your device as a new sample, select &ldquo;Model:Samples&rdquo; (USB) or your audio interface (if the device&rsquo;s outputs are connected to it) as the <strong>Audio In</strong>. Whatever the device is playing &mdash; patterns, live pad hits, effects &mdash; gets recorded and sent straight back as a new sample. Great for layering sounds, capturing jams, or creating one-shot variations.</p>
+                        </div>
+
+                        <div>
+                            <p class="font-medium text-surface mb-1">Tips</p>
+                            <ul class="list-disc list-inside space-y-0.5">
+                                <li>Sample ID auto-increments after each successful transfer (resets to 0 on page reload)</li>
+                                <li>Audio is recorded at 48 kHz, 16-bit, summed to mono &mdash; matching the device&rsquo;s native format</li>
+                                <li>Recordings are capped at 10 seconds</li>
+                                <li>If transfer stalls, check your USB connection and ensure MIDI ports are correctly selected</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button
+                        id="helpClose"
+                        class="ml-4 shrink-0 self-start text-label hover:text-surface"
+                    >
+                        <i data-lucide="x" class="size-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div
                 id="legalNotice"
                 class="mt-4 hidden rounded-xl bg-chassis-dark p-4 text-xs text-label-dark"
             >
@@ -225,6 +299,13 @@
                 >
                     <i data-lucide="scale" class="size-4"></i>
                     Legal
+                </button>
+                <button
+                    id="helpButton"
+                    class="hw-label flex items-center gap-2 hover:text-accent transition"
+                >
+                    <i data-lucide="circle-help" class="size-4"></i>
+                    Help
                 </button>
                 <a
                     href="https://github.com/edjw/underpass-2"

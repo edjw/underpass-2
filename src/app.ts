@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.   */
 
 import "./app.css";
-import { createIcons, AudioLines, Circle, Square, X, Scale, Github } from "lucide";
+import { createIcons, AudioLines, Circle, CircleHelp, Square, X, Scale, Github } from "lucide";
 
 // AudioWorklet processors run in a separate thread — they must be loaded by URL.
 // Vite builds processors.ts as a separate entry point (see vite.config.ts).
@@ -23,7 +23,7 @@ const processorsUrl = import.meta.env.DEV ? "/src/processors.ts" : "/processors.
 
 // Render static Lucide icons in the DOM
 createIcons({
-  icons: { AudioLines, Circle, Square, X, Scale, Github },
+  icons: { AudioLines, Circle, CircleHelp, Square, X, Scale, Github },
 });
 
 // Fail fast if the HTML is missing expected elements
@@ -728,4 +728,20 @@ legalButton.onclick = function () {
 
 legalCloseButton.onclick = function () {
   legalNotice.classList.add("hidden");
+};
+
+
+// Help panel
+//
+
+const helpButton = requireElement<HTMLButtonElement>("button#helpButton");
+const helpPanel = requireElement<HTMLDivElement>("div#helpPanel");
+const helpCloseButton = requireElement<HTMLButtonElement>("button#helpClose");
+
+helpButton.onclick = function () {
+  helpPanel.classList.toggle("hidden");
+};
+
+helpCloseButton.onclick = function () {
+  helpPanel.classList.add("hidden");
 };
