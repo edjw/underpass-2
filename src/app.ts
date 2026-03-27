@@ -248,6 +248,7 @@ let midiSampleDumpPacketsTotal = 0;
 let midiSampleDumpPacketsSent = 0;
 let midiSampleDumpPacketsAcknowledged = 0;
 
+let midiTransferActive = false;
 let midiTransferNakCount = 0;
 let midiTransferTimeout: ReturnType<typeof setTimeout> | null = null;
 const MIDI_TRANSFER_TIMEOUT_MS = 2000;
@@ -271,6 +272,7 @@ function startMidiTimeout() {
 
 function abortMidiTransfer(reason: string) {
   clearMidiTimeout();
+  midiTransferActive = false;
   if (recCurStatusNode) recCurStatusNode.textContent = reason;
   resetRecordButton();
   midiSampleDumpPacketsSent = midiSampleDumpPacketsTotal; // Stop sending
@@ -303,6 +305,7 @@ function midiSendSampleName(deviceID: number, sampleNumber: number, name: string
 
 function finishMidiTransfer() {
   clearMidiTimeout();
+  midiTransferActive = false;
   const sampleID = Math.max(0, Math.min(16383, parseInt(sampleIDInput.value) || 0));
   const sampleName = sampleNameInput.value.trim() || `SAMP-${String(sampleID).padStart(2, '0')}`;
   midiSendSampleName(currentDeviceID, sampleID, sampleName);
@@ -371,6 +374,7 @@ function midiSendSampleDump(sampleNumber: number, sampleRate: number, samples: F
   const packets = newMidiSDDataPackets(0, 16, samples);
 
   recorderShowMidiSDProgress(0);
+  midiTransferActive = true;
   midiSampleDumpPackets = packets;
   midiSampleDumpHeader = header;
   midiSampleDumpPacketsTotal = packets.length + 1;
@@ -560,6 +564,13 @@ function recorderInit(stream: MediaStream) {
 }
 
 function recorderShutdown() {
+  if (timeout) {
+    clearTimeout(timeout);
+    timeout = null;
+  }
+  if (recIsRecording) {
+    resetRecordButton();
+  }
   if (activeStream) {
     activeStream.getTracks().forEach(t => t.stop());
     activeStream = null;
@@ -568,6 +579,9 @@ function recorderShutdown() {
     audioContext.close();
     audioContext = null;
   }
+  recSourceNode = null;
+  recRmsDbNode = null;
+  recSavingNode = null;
 }
 
 // Create a Lucide file-audio icon element for recording rows
@@ -601,6 +615,10 @@ function resetRecordButton() {
 function recorderStart() {
   if (!audioContext) {
     alert("Select an audio input first");
+    return;
+  }
+  if (midiTransferActive) {
+    alert("Please wait for the current transfer to finish");
     return;
   }
 
