@@ -97,10 +97,6 @@ function audioInputChanged() {
   };
 
   navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-    if (activeStream) {
-      activeStream.getTracks().forEach(t => t.stop());
-    }
-    activeStream = stream;
     recorderInit(stream);
   }).catch((err: Error) => {
     alert("Unable to access audio.\n\n" + err);
@@ -523,6 +519,7 @@ window.addEventListener("pagehide", recorderShutdown);
 
 function recorderInit(stream: MediaStream) {
   recorderShutdown();
+  activeStream = stream;
   audioContext = new AudioContext({ sampleRate: 48000 });
 
   recSourceNode = audioContext.createMediaStreamSource(stream);
