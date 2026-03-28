@@ -34,6 +34,7 @@ function requireElement<T extends Element>(selector: string): T {
 }
 
 let audioContext: AudioContext | null = null;
+let activeStream: MediaStream | null = null;
 
 const enableAudioButton = requireElement<HTMLButtonElement>("button#enableAudio");
 const mainControlsSection = requireElement<HTMLElement>("section#mainControls");
@@ -56,7 +57,7 @@ function initAudioAndMidi() {
 navigator.permissions.query({ name: "microphone" as PermissionName }).then((status) => {
   if (status.state === "granted") {
     navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
-      void stream;
+      stream.getTracks().forEach(t => t.stop());
       initAudioAndMidi();
     }).catch(() => {
       // Permission was granted but getUserMedia failed — fall back to button
@@ -68,7 +69,7 @@ navigator.permissions.query({ name: "microphone" as PermissionName }).then((stat
 
 enableAudioButton.onclick = function () {
   navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
-    void stream; // permission grant only — stream is discarded
+    stream.getTracks().forEach(t => t.stop());
     initAudioAndMidi();
   }).catch((err: Error) => {
     console.log("error enabling audio:" + err);
@@ -243,9 +244,11 @@ let midiSampleDumpPacketsTotal = 0;
 let midiSampleDumpPacketsSent = 0;
 let midiSampleDumpPacketsAcknowledged = 0;
 
+let midiTransferActive = false;
 let midiTransferNakCount = 0;
 let midiTransferTimeout: ReturnType<typeof setTimeout> | null = null;
 const MIDI_TRANSFER_TIMEOUT_MS = 2000;
+const MIDI_WAIT_TIMEOUT_MS = 10000;
 let currentDeviceID = 0;
 
 function clearMidiTimeout() {
@@ -265,6 +268,7 @@ function startMidiTimeout() {
 
 function abortMidiTransfer(reason: string) {
   clearMidiTimeout();
+  midiTransferActive = false;
   if (recCurStatusNode) recCurStatusNode.textContent = reason;
   resetRecordButton();
   midiSampleDumpPacketsSent = midiSampleDumpPacketsTotal; // Stop sending
@@ -297,6 +301,7 @@ function midiSendSampleName(deviceID: number, sampleNumber: number, name: string
 
 function finishMidiTransfer() {
   clearMidiTimeout();
+  midiTransferActive = false;
   const sampleID = Math.max(0, Math.min(16383, parseInt(sampleIDInput.value) || 0));
   const sampleName = sampleNameInput.value.trim() || `SAMP-${String(sampleID).padStart(2, '0')}`;
   midiSendSampleName(currentDeviceID, sampleID, sampleName);
@@ -351,6 +356,10 @@ function midiInputMessage(event: MIDIMessageEvent) {
     abortMidiTransfer("Cancelled by device");
   } else if (d[3] === 0x7c) { // WAIT
     clearMidiTimeout();
+    midiTransferTimeout = setTimeout(() => {
+      console.error("MIDI device did not resume after WAIT");
+      abortMidiTransfer("Error: Device did not resume");
+    }, MIDI_WAIT_TIMEOUT_MS);
   } else {
     console.log("Ignoring unknown MIDI message " + midiMessageToString(d));
   }
@@ -361,6 +370,7 @@ function midiSendSampleDump(sampleNumber: number, sampleRate: number, samples: F
   const packets = newMidiSDDataPackets(0, 16, samples);
 
   recorderShowMidiSDProgress(0);
+  midiTransferActive = true;
   midiSampleDumpPackets = packets;
   midiSampleDumpHeader = header;
   midiSampleDumpPacketsTotal = packets.length + 1;
@@ -373,7 +383,7 @@ function midiSendSampleDump(sampleNumber: number, sampleRate: number, samples: F
 }
 
 function newMidiSDHeader(deviceID: number, sampleNumber: number, sampleBits: number, sampleRate: number, sampleLength: number, loopStart: number, loopEnd: number, loopType: number): Uint8Array {
-  const samplePeriod = 1000000000 / sampleRate;
+  const samplePeriod = Math.round(1000000000 / sampleRate);
   const header = new Uint8Array(21);
   header[0] = 0xf0;                        // begin system exclusive
   header[1] = 0x7e;                        // sample dump
@@ -509,6 +519,7 @@ window.addEventListener("pagehide", recorderShutdown);
 
 function recorderInit(stream: MediaStream) {
   recorderShutdown();
+  activeStream = stream;
   audioContext = new AudioContext({ sampleRate: 48000 });
 
   recSourceNode = audioContext.createMediaStreamSource(stream);
@@ -543,14 +554,31 @@ function recorderInit(stream: MediaStream) {
       }
       recorderShowDuration(recLength);
     };
+  }).catch((err: Error) => {
+    console.error("Failed to load audio worklet:", err);
+    alert("Failed to initialise audio processing. Please reload the page.");
   });
 }
 
 function recorderShutdown() {
+  if (timeout) {
+    clearTimeout(timeout);
+    timeout = null;
+  }
+  if (recIsRecording) {
+    resetRecordButton();
+  }
+  if (activeStream) {
+    activeStream.getTracks().forEach(t => t.stop());
+    activeStream = null;
+  }
   if (audioContext) {
     audioContext.close();
     audioContext = null;
   }
+  recSourceNode = null;
+  recRmsDbNode = null;
+  recSavingNode = null;
 }
 
 // Create a Lucide file-audio icon element for recording rows
@@ -586,6 +614,10 @@ function recorderStart() {
     alert("Select an audio input first");
     return;
   }
+  if (midiTransferActive) {
+    alert("Please wait for the current transfer to finish");
+    return;
+  }
 
   // Create new recordings node from template
   recCurNode = recTrPrototype.content.firstElementChild!.cloneNode(true) as HTMLTableRowElement;
@@ -616,6 +648,7 @@ function recorderStart() {
 
   if (!recSourceNode || !recSavingNode) {
     alert("Audio pipeline is still loading. Try again in a moment.");
+    if (recCurNode) recCurNode.remove();
     return;
   }
 
